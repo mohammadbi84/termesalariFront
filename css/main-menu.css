@@ -102,7 +102,7 @@
 }
 
 .main-menu .nav-link:hover::after {
-    width: 70%;
+    width: 80%;
 }
 
 .cart-badge {
