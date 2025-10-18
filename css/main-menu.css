@@ -1,0 +1,95 @@
+:root {
+    --main-menu-back: white;
+    --main-menu-back-small: rgba(255, 255, 255, 0.8);
+    --main-menu-margin-top: 20px;
+    --main-menu-margin: 70px;
+    --main-menu-padding-default: 8px;
+    --main-menu-padding-small: 0px;
+    /*  اگر متغیر --raduis را تعریف نکرده اید، این خط را اضافه کنید: */
+    --raduis: 5px;
+    /* یا هر مقدار دلخواه دیگر */
+}
+
+.main-menu {
+    background-color: var(--main-menu-back);
+    position: fixed;
+    height: fit-content;
+    z-index: 1000;
+    top: var(--main-menu-margin-top);
+    left: var(--main-menu-margin);
+    right: var(--main-menu-margin);
+    padding: var(--main-menu-padding-default) var(--main-menu-padding-default);
+    transition: 500ms;
+    box-sizing: content-box !important;
+}
+
+.main-menu.small {
+    left: 0;
+    right: 0;
+    top: calc(var(--top-bar-height) + var(--top-ad-height));
+    padding: var(--main-menu-padding-small) 100px;
+    /*background-color: var(--main-menu-back-small);  اگر می خواهید پس زمینه نیمه شفاف باشد */
+    /*backdrop-filter: blur(2px); اگر می خواهید پس زمینه محو باشد */
+    box-shadow: 0 0 5px #595959;
+    /*border-radius: 10px; اگر می خواهید گوشه ها گرد باشند */
+}
+
+.main-menu.with-top-ad {
+    top: calc(var(--main-menu-margin-top) + var(--top-ad-height));
+}
+
+.main-menu.small .navbar .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.main-menu .navbar .navbar-brand {
+    margin-right: 0;
+}
+
+.main-menu .navbar .navbar-brand img {
+    height: 45px;
+    transform: scale(1);
+    -ms-transform: scale(1);
+}
+
+.main-menu.small .navbar .navbar-brand img {
+    margin-right: 0;
+    margin-left: 0;
+    transform: scale(0.8);
+    -ms-transform: scale(0.8);
+}
+
+.main-menu .navbar .btn-text {
+    color: var(--bs-nav-link-color) !important;
+    padding: 4px 10px;
+    border-radius: var(--raduis);
+    /* added border-radius */
+
+}
+
+.main-menu .navbar .btn-text:hover {
+    /*background-color: var(--primary-color--50); */
+    color: white !important;
+}
+
+.main-menu .navbar .nav-item .dropdown-menu .dropdown-item {
+    text-align: center;
+}
+
+
+@media (max-width: 992px) {
+    .main-menu {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        margin: 0;
+        padding: 0px;
+    }
+
+    .main-menu.small {
+        padding: var(--main-menu-padding-small) 20px;
+    }
+}
+
+
