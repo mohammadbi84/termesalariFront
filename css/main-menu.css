@@ -2,8 +2,8 @@
     --main-menu-back: white;
     --main-menu-back-small: rgba(255, 255, 255, 0.8);
     --main-menu-margin-top: 20px;
-    --main-menu-margin: 70px;
-    --main-menu-padding-default: 8px;
+    --main-menu-margin: 6.5%;
+    --main-menu-padding-default: 10px;
     --main-menu-padding-small: 0px;
     /*  اگر متغیر --raduis را تعریف نکرده اید، این خط را اضافه کنید: */
     --raduis: 5px;
@@ -78,6 +78,171 @@
 }
 
 
+.main-menu .nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.main-menu .nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* انیمیشن خط زیر لینک‌ها */
+.main-menu .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 12%;
+    width: 0;
+    height: 1.5px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.main-menu .nav-link:hover::after {
+    width: 70%;
+}
+
+.cart-badge {
+    padding: 0;
+    padding-top: 1px;
+    position: absolute !important;
+    top: 0px !important;
+    right: 0px;
+    width: 14px;
+    height: 13px;
+    background-color: #4fba6b;
+}
+
+.dropdown-menu {
+    width: 350px;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding-top: 0 !important;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+    background-color: white;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px;
+}
+
+.dropdown-menu.dropdown-animated {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+    display: block;
+    left: 0 !important;
+    /* برای نمایش درست توسط بوت‌استرپ */
+}
+
+.dropdown .show+.dropdown-animated {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+/* دکمه دسته‌بندی‌ها */
+.categories-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.categories-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* منوی کشویی دسته‌بندی‌ها */
+.categories-dropdown {
+    position: relative;
+}
+
+.categories-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 250px;
+    background: transparent;
+    z-index: 1000;
+    display: none;
+}
+
+.categories-dropdown:hover .categories-menu {
+    display: block;
+}
+
+.category-container {
+    background-color: #f7f7f7;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.category-item {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.category-item:hover {
+    color: var(--primary-color);
+    padding-right: 2rem;
+}
+
+.category-item i {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* زیرمنو */
+.submenu {
+    position: absolute;
+    top: 0;
+    right: 101%;
+    width: 200px;
+    background: #f7f7f7;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 8px 0;
+    display: none;
+}
+
+.has-submenu:hover .submenu {
+    display: block;
+}
+
+.submenu-item {
+    padding: 0.5rem 1.5rem;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.submenu-item:hover {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+    padding-right: 2rem;
+}
+
 @media (max-width: 992px) {
     .main-menu {
         top: 10px;
@@ -91,5 +256,3 @@
         padding: var(--main-menu-padding-small) 20px;
     }
 }
-
-

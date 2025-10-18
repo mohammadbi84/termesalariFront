@@ -9,14 +9,17 @@
     <!-- لینک CDN ها -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/fontawesome/css/fontawesome.css">
+    <link href="https://v1.fontapi.ir/css/VazirFD" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" href="css/boxicons.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
 
 
     <!-- menu styles -->
@@ -32,12 +35,13 @@
         }
 
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Vazir FD', sans-serif !important;
             line-height: 1.6;
             color: #333;
             min-height: 200vh;
         }
-        i{
+
+        i {
             position: relative;
             top: 2px;
         }
@@ -46,47 +50,71 @@
 
 <body class="bg-danger">
     <header>
-        <div class="main-menu rounded">
+        <div class="main-menu rounded-3">
             <nav class="navbar navbar-expand-lg">
                 <div class="container p-0">
                     <a class="navbar-brand fw-bold" href="/">
                         <img src="assets/logo/logo.webp" alt="website logo">
                     </a>
-    
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-    
+
                     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0 column-gap-2">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">صفحه نخست</a>
-                            </li>
+                            <!-- دکمه دسته‌بندی‌ها -->
+                            <div class="categories-dropdown me-3 d-flex">
+                                <button class="categories-btn">
+                                    <i class="fas fa-bars"></i>
+                                    دسته‌بندی‌ها
+                                </button>
     
-                            <li class="nav-item btn-group">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    آموزشگاه ها
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#">آیتم 1</a></li>
-                                    <li><a class="dropdown-item" href="#">آیتم 2</a></li>
-                                </ul>
-                            </li>
-    
-                            <li class="nav-item btn-group">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    دوره ها
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#special-offers">پیشنهاد ویژه</a></li>
-                                    <li><a class="dropdown-item" href="#courses">جدیدترین ها</a></li>
-                                </ul>
-                            </li>
-    
+                                <!-- منوی کشویی دسته‌بندی‌ها -->
+                                <div class="categories-menu">
+                                    <div class="category-container border py-2">
+                                        <!-- دسته‌بندی با زیرمنو -->
+                                        <div class="has-submenu" style="position: relative;">
+                                            <a href="#" class="category-item">
+                                                <span>دوچرخه‌ها</span>
+                                                <i class="fas fa-chevron-left"></i>
+                                            </a>
+        
+                                            <!-- زیرمنو -->
+                                            <div class="submenu border">
+                                                <a href="#" class="submenu-item">دوچرخه کوهستان</a>
+                                                <a href="#" class="submenu-item">دوچرخه شهری</a>
+                                                <a href="#" class="submenu-item">دوچرخه کورسی</a>
+                                                <a href="#" class="submenu-item">دوچرخه تاشو</a>
+                                                <a href="#" class="submenu-item">دوچرخه برقی</a>
+                                            </div>
+                                        </div>
+        
+                                        <a href="#" class="category-item">
+                                            <span>لوازم جانبی</span>
+                                        </a>
+        
+                                        <a href="#" class="category-item">
+                                            <span>پوشاک دوچرخه‌سواری</span>
+                                        </a>
+        
+                                        <a href="#" class="category-item">
+                                            <span>قطعات و ابزار</span>
+                                        </a>
+        
+                                        <a href="#" class="category-item">
+                                            <span>کلاه و محافظ</span>
+                                        </a>
+        
+                                        <a href="#" class="category-item">
+                                            <span>کفش مخصوص</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="#footer">درباره ما</a>
                             </li>
@@ -99,23 +127,119 @@
                         </ul>
                         <!--  بخشی از HTML که دکمه ها را شامل می شود.  -->
                         <div class="d-flex gap-2 align-items-center justify-content-center position-relative">
-                            <!-- دکمه سرچ -->
-                            <button id="toggleSearch" class="btn btn-icon position-relative align-items-center"
-                                type="button">
-                                <span class="bi bi-search"></span>
-    
-                                <!-- اینپوت کنار آیکون (سمت راست باز میشه) -->
-                                <div id="searchInputWrapper" class="search-box-horizontal p-0 ">
-                                    <input type="text" class="input" placeholder="جستجو..." />
-                                </div>
-                            </button>
-    
-                            <!-- آیکون‌های دیگر -->
-                            
+
+                            <div class="dropdown">
+                                <a class="text-decoration-none btn btn-icon" id="cartBtn" data-bs-toggle="dropdown"
+                                    type="button" aria-expanded="false">
+                                    <span class="badge rounded-pill cart-badge">4</span>
+                                    <i class="fa-solid fa-cart-shopping fa-lg me-1 text-secondary"></i>
+                                </a>
+                                <!-- منوی دراپ‌داون با انیمیشن -->
+                                <ul class="dropdown-menu dropdown-animated text-end p-1 shadow border-0">
+                                    <li class="bg-white" style="position: sticky;top: 0px;">
+                                        <h5 class="dropdown-header text-start border-bottom w-100">
+                                            5 کالا
+                                        </h5>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="row border-bottom">
+                                            <div class="col-md-5 p-2">
+                                                <a href="#">
+                                                    <img src="{{ asset('Untitled.png') }}" alt="name" class="w-100">
+                                                </a>
+                                            </div>
+                                            <div class="col-md-7 p-2">
+                                                <p class="drapdown-title mt-2 text-start">نام محصول</p>
+                                                <div class="clearfix pt-2">
+                                                    <span class="bg-danger text-white rounded-pill px-2"
+                                                        style="font-size: 12px">5%</span>
+                                                    <span class="text-secondary" style="font-size: 14px"><del
+                                                            class="del">10,000</del></span>
+                                                    9,500
+                                                    <span class="toman">تومان</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="row border-bottom">
+                                            <div class="col-md-5 p-2">
+                                                <a href="#">
+                                                    <img src="{{ asset('Untitled.png') }}" alt="name" class="w-100">
+                                                </a>
+                                            </div>
+                                            <div class="col-md-7 p-2">
+                                                <p class="drapdown-title mt-2 text-start">نام محصول</p>
+                                                <div class="clearfix pt-2">
+                                                    <span class="bg-danger text-white rounded-pill px-2"
+                                                        style="font-size: 12px">5%</span>
+                                                    <span class="text-secondary" style="font-size: 14px"><del
+                                                            class="del">10,000</del></span>
+                                                    9,500
+                                                    <span class="toman">تومان</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="row border-bottom">
+                                            <div class="col-md-5 p-2">
+                                                <a href="#">
+                                                    <img src="{{ asset('Untitled.png') }}" alt="name" class="w-100">
+                                                </a>
+                                            </div>
+                                            <div class="col-md-7 p-2">
+                                                <p class="drapdown-title mt-2 text-start">نام محصول</p>
+                                                <div class="clearfix pt-2">
+                                                    <span class="bg-danger text-white rounded-pill px-2"
+                                                        style="font-size: 12px">5%</span>
+                                                    <span class="text-secondary" style="font-size: 14px"><del
+                                                            class="del">10,000</del></span>
+                                                    9,500
+                                                    <span class="toman">تومان</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <div class="row border-bottom">
+                                            <div class="col-md-5 p-2">
+                                                <a href="#">
+                                                    <img src="{{ asset('Untitled.png') }}" alt="name" class="w-100">
+                                                </a>
+                                            </div>
+                                            <div class="col-md-7 p-2">
+                                                <p class="drapdown-title mt-2 text-start">نام محصول</p>
+                                                <div class="clearfix pt-2">
+                                                    <span class="bg-danger text-white rounded-pill px-2"
+                                                        style="font-size: 12px">5%</span>
+                                                    <span class="text-secondary" style="font-size: 14px"><del
+                                                            class="del">10,000</del></span>
+                                                    9,500
+                                                    <span class="toman">تومان</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="bg-white p-3 border-top" style="position: sticky;bottom: 0;">
+                                        <div class="row ">
+                                            <div class="col text-start">
+                                                <span class="float-end mt-0 card-price">9,500<span
+                                                        class="toman">تومان</span></span>
+                                            </div>
+                                            <div class="col text-start">
+                                                <a href="#" class="btn btn-primary my-auto">مشاهده
+                                                    سبدخرید</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- ورود و ثبت نام -->
                             <div class="flex justify-center items-center">
-                                <div class="button-container border border-2 rounded p-2">
+                                <div class="button-container border border-secondary rounded p-2">
                                     <a href="#" class="text-muted text-decoration-none px-2">
-                                        ورود | ثبت نام <i class="fa-solid fa-right-to-bracket me-1 fa-lg"></i>
+                                        ورود | ثبت نام <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
                                     </a>
                                 </div>
                             </div>

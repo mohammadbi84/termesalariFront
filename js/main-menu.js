@@ -20,11 +20,11 @@ function initMainMenu() {
             document.documentElement.scrollTop > scrollOffset // For Chrome, Firefox, IE and Opera
         ) {
             mainMenu.classList.add("small");
-            mainMenu.classList.remove("rounded");
+            mainMenu.classList.remove("rounded-3");
             mainMenu.classList.remove("with-top-ad");
         } else {
             mainMenu.classList.remove("small");
-            mainMenu.classList.add("rounded");
+            mainMenu.classList.add("rounded-3");
             if (topAd) mainMenu.classList.add("with-top-ad");
         }
     }
