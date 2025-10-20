@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوکمارک قابل جمع‌شدن</title>
+
+    <!-- لینک CDN ها -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- استایل‌های سفارشی -->
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #ffc107;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* استایل بوکمارک */
+        .bookmark-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .bookmark {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(135deg, var(--primary-color), #20c997);
+            color: white;
+            /* border-radius: 10px 10px 0 0; */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            /* overflow: hidden; */
+            transition: all 0.4s ease;
+            margin-bottom: 20px;
+        }
+
+        .bookmark.expanded {
+            height: 60px;
+        }
+
+        .bookmark.collapsed {
+            height: 8px;
+            padding-bottom: 8px;
+        }
+
+        .bookmark.collapsed .bookmark-content {
+            height: 8px;
+            position: relative;
+            bottom: 10px;
+        }
+
+        /* محتوای بوکمارک */
+        .bookmark-content {
+            padding: 0px 40px;
+            height: 60px;
+
+            overflow: hidden;
+        }
+
+        /* دکمه پایین بوکمارک */
+        .bookmark-tab {
+            position: absolute;
+            bottom: -40px;
+            left: 30px;
+            width: 120px;
+            height: 40px;
+            background: #28a745;
+            border-radius: 0px 0px 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-tab:hover {
+            background: linear-gradient(135deg, #239c56, #1db984);
+        }
+
+        .bookmark-tab i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .bookmark.collapsed .bookmark-tab i {
+            transform: rotate(180deg);
+        }
+
+
+        /* محتوای صفحه */
+        .page-content {
+            margin-top: 40px;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .info-text {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- بوکمارک -->
+    <div class="bookmark-container">
+        <div class="bookmark expanded" id="bookmark">
+            <div class="bookmark-content">
+                <div class="bookmark-text d-flex align-items-center justify-content-start h-100 gap-3">
+                    <h6 class="m-0">پیشنهاد ویژه!</h6>
+                    <p class="m-0">تا ۵۰٪ تخفیف برای خریدهای بالای ۱,۰۰۰,۰۰۰ تومان - کد تخفیف: SUMMER1403</p>
+                    <button class="btn btn-close" id="bookmarkToggle"></button>
+                </div>
+            </div>
+
+            <!-- دکمه پایین بوکمارک -->
+            <div class="bookmark-tab">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- محتوای صفحه -->
+    <div class="page-content">
+        <h1>صفحه نمایش بوکمارک</h1>
+        <p>این صفحه فقط برای نمایش بوکمارک طراحی شده است.</p>
+
+        <div class="info-text">
+            <h4>راهنمای استفاده:</h4>
+            <p>روی دکمه پایین بوکمارک کلیک کنید تا جمع شود. دوباره کلیک کنید تا باز شود.</p>
+        </div>
+    </div>
+
+    <!-- اسکریپت -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bookmark = document.getElementById('bookmark');
+            const bookmarkToggle = document.getElementById('bookmarkToggle');
+
+            // تابع برای تغییر وضعیت بوکمارک
+            function toggleBookmark() {
+                if (bookmark.classList.contains('expanded')) {
+                    // جمع کردن بوکمارک
+                    bookmark.classList.remove('expanded');
+                    bookmark.classList.add('collapsed');
+                } else {
+                    // باز کردن بوکمارک
+                    bookmark.classList.remove('collapsed');
+                    bookmark.classList.add('expanded');
+                }
+            }
+
+            // افزودن رویداد کلیک به دکمه بوکمارک
+            bookmarkToggle.addEventListener('click', toggleBookmark);
+        });
+    </script>
+</body>
+
+</html>

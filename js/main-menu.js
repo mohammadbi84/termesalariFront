@@ -1,40 +1,62 @@
 function initMainMenu() {
-    let mainMenu = document.querySelector(".main-menu");
+  let mainMenu = document.querySelector(".main-menu");
 
-    //region: make main-menu width same as search-bar width
-    let screenWidth = document.body.clientWidth;
-    
+  //region: make main-menu width same as search-bar width
+  let screenWidth = document.body.clientWidth;
 
-    //endregion: make main-menu width same as search-bar width
+  //endregion: make main-menu width same as search-bar width
 
-    const topAd = document.querySelector(".top-ad-container");
-    if (topAd) {
-        mainMenu.classList.add("with-top-ad");
+  const bookmarkToggle = document.getElementById("bookmarkToggle");
+  const Bookmark = document.getElementById("bookmark");
+  if (Bookmark && Bookmark.classList.contains("expanded")) {
+    mainMenu.classList.add("with-bookmark");
+  }
+
+  const scrollOffset = Bookmark?.clientHeight ?? 64;
+
+  function scrollFunction(e) {
+    if (
+      document.body.scrollTop > scrollOffset || // For Safari
+      document.documentElement.scrollTop > scrollOffset // For Chrome, Firefox, IE and Opera
+    ) {
+      mainMenu.classList.add("small");
+      if (Bookmark && Bookmark.classList.contains("expanded")) {
+        mainMenu.classList.add("smallBookmark");
+      }
+      mainMenu.classList.remove("rounded-3");
+    } else {
+      mainMenu.classList.remove("small");
+      if (Bookmark && Bookmark.classList.contains("expanded")) {
+        mainMenu.classList.remove("smallBookmark");
+      }
+      mainMenu.classList.add("rounded-3");
     }
+  }
 
-    const scrollOffset = topAd?.clientHeight ?? 64;
+  window.addEventListener("scroll", scrollFunction);
 
-    function scrollFunction(e) {
-        if (
-            document.body.scrollTop > scrollOffset || // For Safari
-            document.documentElement.scrollTop > scrollOffset // For Chrome, Firefox, IE and Opera
-        ) {
-            mainMenu.classList.add("small");
-            mainMenu.classList.remove("rounded-3");
-            mainMenu.classList.remove("with-top-ad");
-        } else {
-            mainMenu.classList.remove("small");
-            mainMenu.classList.add("rounded-3");
-            if (topAd) mainMenu.classList.add("with-top-ad");
-        }
+  // تابع برای تغییر وضعیت بوکمارک
+  function toggleBookmark() {
+    if (Bookmark.classList.contains("expanded")) {
+      // جمع کردن بوکمارک
+      Bookmark.classList.remove("expanded");
+      Bookmark.classList.add("collapsed");
+      mainMenu.classList.remove("with-bookmark");
+      mainMenu.classList.remove("smallBookmark");
+    } else {
+      // باز کردن بوکمارک
+      Bookmark.classList.remove("collapsed");
+      Bookmark.classList.add("expanded");
     }
+  }
 
-    window.addEventListener("scroll", scrollFunction);
+  // افزودن رویداد کلیک به دکمه بوکمارک
+  bookmarkToggle.addEventListener("click", toggleBookmark);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    initMainMenu();
+  initMainMenu();
 });
 function setCssVar(name, value) {
-    document.documentElement.style.setProperty(name, value)
+  document.documentElement.style.setProperty(name, value);
 }

@@ -26,16 +26,20 @@
 .main-menu.small {
     left: 0;
     right: 0;
-    top: calc(var(--top-bar-height) + var(--top-ad-height));
+    top: 5px;
     padding: var(--main-menu-padding-small) 100px;
     /*background-color: var(--main-menu-back-small);  اگر می خواهید پس زمینه نیمه شفاف باشد */
     /*backdrop-filter: blur(2px); اگر می خواهید پس زمینه محو باشد */
-    box-shadow: 0 0 5px #595959;
+    box-shadow: 0px 4px 5px #8484845e;
     /*border-radius: 10px; اگر می خواهید گوشه ها گرد باشند */
 }
 
-.main-menu.with-top-ad {
-    top: calc(var(--main-menu-margin-top) + var(--top-ad-height));
+.main-menu.with-bookmark {
+    top: 70px;
+}
+
+.main-menu.smallBookmark {
+    top: 60px !important;
 }
 
 .main-menu.small .navbar .container-fluid {
@@ -124,7 +128,7 @@
 }
 
 .dropdown-menu::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
     background-color: white;
 }
 
@@ -220,7 +224,7 @@
     background: #f7f7f7;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    padding: 8px 0;
+    padding: 5px 0;
     display: none;
 }
 
@@ -255,4 +259,80 @@
     .main-menu.small {
         padding: var(--main-menu-padding-small) 20px;
     }
+}
+
+
+
+
+/* استایل بوکمارک */
+.bookmark-container {
+    position: relative;
+    width: 100%;
+}
+
+.bookmark {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color));
+    color: white;
+    /* border-radius: 10px 10px 0 0; */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    /* overflow: hidden; */
+    transition: all 0.4s ease;
+    margin-bottom: 20px;
+}
+
+.bookmark.expanded {
+    height: 60px;
+}
+
+.bookmark.collapsed {
+    height: 5px;
+    padding-bottom: 5px;
+}
+
+.bookmark.collapsed .bookmark-content {
+    height: 5px;
+    position: relative;
+    bottom: 10px;
+}
+
+/* محتوای بوکمارک */
+.bookmark-content {
+    padding: 0px 20px;
+    height: 60px;
+
+    overflow: hidden;
+}
+
+/* دکمه پایین بوکمارک */
+.bookmark-tab {
+    position: absolute;
+    bottom: -40px;
+    left: 30px;
+    width: 120px;
+    height: 40px;
+    background: #28a745;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.bookmark-tab:hover {
+    background: linear-gradient(135deg, #239c56, #1db984);
+}
+
+.bookmark-tab i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.bookmark.collapsed .bookmark-tab i {
+    transform: rotate(180deg);
 }
