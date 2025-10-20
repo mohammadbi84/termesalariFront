@@ -1,0 +1,11 @@
+.special-offer-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    background-image: url('/assets/svgs/underline.svg');
+    background-repeat: no-repeat;
+    background-position: 0px 34px;
+    background-size: 38%;
+    padding-bottom: 11px;
+}
