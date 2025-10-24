@@ -1,11 +1,226 @@
-.special-offer-title {
-    font-size: 1.8rem;
+:root {
+    --primary-color: #4FBA6C;
+    --secondary-color: #ffc107;
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+}
+
+body {
+    font-family: 'Vazir FD', sans-serif !important;
+    line-height: 1.6;
     color: #333;
-    margin-bottom: 20px;
+    min-height: 200vh;
+    background-color: #f8f9fa;
+}
+
+i {
+    position: relative;
+    top: 2px;
+}
+
+.fs-small {
+    font-size: smaller;
+}
+
+.title {
+    font-size: 1.6rem;
+    color: #333;
+}
+
+/* flipping cards */
+.flip-card {
+    perspective: 1200px;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    min-height: 350px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    background-color: #cb8c3a;
+    align-items: center;
+    /* box-shadow: 0 5px 10px rgba(212, 212, 212, 0.3); */
+    transform-style: preserve-3d;
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.flip-card-front {
+    background-color: #fff;
+    z-index: 2;
+}
+
+
+.flip-card-back {
+    background-color: #ffffff;
+    color: #121212;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 18px;
+    text-align: right;
+}
+
+.flip-card-front .image-badge {
+    width: 100%;
+    transform: translateZ(1px);
+    padding: 1px;
+}
+
+.flip-card-front .image-details {
+    transform: translateZ(1px);
+}
+
+.flip-card-front .details {
+    width: 100%;
+    padding: 8px 10px !important;
+    transform: translateZ(1px);
     text-align: center;
-    background-image: url('/assets/svgs/underline.svg');
-    background-repeat: no-repeat;
-    background-position: 0px 34px;
-    background-size: 38%;
-    padding-bottom: 11px;
+}
+
+.flip-card-back .bottom-icons2 {
+    transform: translateZ(80px);
+}
+
+.flip-card-back h4 {
+    transform: translateZ(80px);
+}
+
+.flip-card-back .time {
+    transform: translateZ(80px);
+}
+
+.flip-card-back div {
+    transform: translateZ(80px);
+}
+
+.flip-card-back .adv-btn {
+    transform: translateZ(80px);
+}
+
+.flip-card-back .discount-squer {
+    transform: translateZ(80px);
+}
+
+.flip-card-front .image-and-badge {
+    /* position: relative;
+            display: flex; */
+    transform: translateZ(100px);
+    text-align: center;
+}
+
+.product-title {
+    font-size: 1.3rem;
+}
+
+.product-price {
+    font-size: 14px;
+}
+
+.product-price-off {
+    font-size: 13px;
+}
+
+.product-off {
+    font-size: 0.8rem;
+    padding: 4px 4px 2px 4px;
+}
+
+.countdown-timer {
+    direction: ltr;
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+}
+
+.timer-col {
+    /*  اختیاری: استایل‌دهی به هر ستون تایمر */
+    text-align: center;
+    width: 20px;
+}
+
+.timer-label {
+    font-size: 0.6rem;
+}
+
+.timer-number {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+
+
+/* categories */
+.category-card {
+    width: 150px;
+    height: 130px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    background: #4FBA6C;
+    background: linear-gradient(90deg, rgba(79, 186, 108, 1) 0%, rgba(94, 224, 129, 1) 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-card:hover .title {
+    color: #fff;
+}
+
+.category-card:hover .count {
+    color: #fff;
+}
+
+.category-card img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.category-card .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.category-card .count {
+    font-size: 12px;
+    color: #888;
 }

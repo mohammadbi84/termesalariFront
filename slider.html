@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسلایدر دسته‌بندی‌ها</title>
+
+    <!-- Splide CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <style>
+        body {
+            font-family: "IRANSans", sans-serif;
+            background: #f8f8f8;
+            padding: 40px;
+            direction: rtl;
+        }
+
+        .splide__slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .category-card {
+            width: 150px;
+            height: 150px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .category-card .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .category-card .count {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .splide__arrow {
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .splide__arrow svg {
+            fill: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="splide" aria-label="دسته بندی‌ها">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <div class="category-card" style="background-color:#fff3cd;">
+                        <img src="icons/image.png" alt="تصاویر">
+                        <div class="title">تصاویر استوک</div>
+                        <div class="count">۵۰۰۰۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/sound.png" alt="صوت">
+                        <div class="title">فایل صوتی</div>
+                        <div class="count">۱۲۰۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/video.png" alt="ویدیو">
+                        <div class="title">ویدیو و فوتیج</div>
+                        <div class="count">۲۰۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/font.png" alt="فونت">
+                        <div class="title">فونت و آیکون</div>
+                        <div class="count">۲۵۰۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/instagram.png" alt="قالب اینستاگرام">
+                        <div class="title">قالب اینستاگرام</div>
+                        <div class="count">۸۰۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/mockup.png" alt="موکاپ">
+                        <div class="title">موکاپ</div>
+                        <div class="count">۷۵۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/vector.png" alt="وکتور">
+                        <div class="title">وکتور لایه باز</div>
+                        <div class="count">۶۰۰۰+</div>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="category-card">
+                        <img src="icons/psd.png" alt="PSD">
+                        <div class="title">فایل PSD</div>
+                        <div class="count">۱۲۰۰+</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Splide JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        new Splide('.splide', {
+            perPage: 5,
+            gap: '1rem',
+            arrows: true,
+            pagination: false,
+            direction: 'rtl',
+            breakpoints: {
+                1024: { perPage: 4 },
+                768: { perPage: 3 },
+                480: { perPage: 2 }
+            }
+        }).mount();
+    </script>
+</body>
+
+</html>

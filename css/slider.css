@@ -320,8 +320,6 @@
     text-align: center;
 }
 
-
-
 .top-slider-thumbs .splide__slide{
     flex: auto;
 }
@@ -332,11 +330,9 @@
     right: -20px;
     background-color: var(--primary-color);
     opacity: 1;
-    /* border-radius: 10px; */
 }
 .top-slider-thumbs .splide__arrow--next{
     left: -20px;
     background-color: var(--primary-color);
     opacity: 1;
-    /* border-radius: 10px; */
 }
