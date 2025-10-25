@@ -5,6 +5,10 @@
     --light-color: #f8f9fa;
 }
 
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
 body {
     font-family: 'Vazir FD', sans-serif !important;
     line-height: 1.6;
@@ -23,7 +27,8 @@ i {
 }
 
 .title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 600;
     color: #333;
 }
 
@@ -48,6 +53,14 @@ i {
     transform: rotateY(180deg);
 }
 
+.discount-squer-front {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card:hover .discount-squer-front {
+    transform: translateY(10px);
+}
+
 .flip-card-front,
 .flip-card-back {
     position: absolute;
@@ -57,7 +70,7 @@ i {
     backface-visibility: hidden;
     background-color: #cb8c3a;
     align-items: center;
-    /* box-shadow: 0 5px 10px rgba(212, 212, 212, 0.3); */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transform-style: preserve-3d;
 }
 
@@ -105,27 +118,27 @@ i {
 }
 
 .flip-card-back .bottom-icons2 {
-    transform: translateZ(80px);
+    transform: translateZ(50px);
 }
 
 .flip-card-back h4 {
-    transform: translateZ(80px);
+    transform: translateZ(50px);
 }
 
 .flip-card-back .time {
-    transform: translateZ(80px);
+    transform: translateZ(50px);
 }
 
 .flip-card-back div {
-    transform: translateZ(80px);
+    transform: translateZ(50px);
 }
 
 .flip-card-back .adv-btn {
-    transform: translateZ(80px);
+    transform: translateZ(50px);
 }
 
 .flip-card-back .discount-squer {
-    transform: translateZ(80px);
+    transform: translateZ(50px);
 }
 
 .flip-card-front .image-and-badge {
@@ -145,6 +158,7 @@ i {
 
 .product-price-off {
     font-size: 13px;
+    color: var(--primary-color);
 }
 
 .product-off {
@@ -156,7 +170,7 @@ i {
     direction: ltr;
     display: flex;
     justify-content: space-around;
-    gap: 8px;
+    gap: 6px;
 }
 
 .timer-col {
@@ -171,7 +185,46 @@ i {
 
 .timer-number {
     font-weight: bold;
+    color: #ff0000;
+}
+
+.custom-splide-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-left: 15px;
+}
+
+.splide-prev-btn,
+.splide-next-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    background: white;
     color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.splide-prev-btn:hover,
+.splide-next-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.splide-prev-btn:disabled,
+.splide-next-btn:disabled {
+    opacity: 0.5;
+    /* cursor: not-allowed; */
+    border-color: #ccc;
+    color: #ccc;
+}
+
+.splide-prev-btn:disabled:hover,
+.splide-next-btn:disabled:hover {
+    background: white;
+    color: #ccc;
 }
 
 
@@ -223,4 +276,203 @@ i {
 .category-card .count {
     font-size: 12px;
     color: #888;
+}
+
+.splide__arrow {
+    background: var(--primary-color);
+}
+
+.splide__arrows--rtl .splide__arrow--next {
+    left: -2px;
+}
+
+.splide__arrows--rtl .splide__arrow--prev {
+    right: 3px;
+}
+
+.splide__arrow svg {
+    fill: #dfdfdf;
+}
+
+
+/* newest products */
+.product-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    background: white;
+    /* height: 450px; */
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-body {
+    /* padding: 1.25rem; */
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+}
+
+.product-info {
+    flex: 1;
+    transition: all 0.3s ease;
+    /* overflow: hidden; */
+    padding: 1rem;
+    height: 42px;
+}
+
+.product-card:hover .product-info {
+    flex: 0.2;
+}
+
+.product-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: #333;
+}
+
+.product-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.product-card:hover .product-description {
+    max-height: 40px;
+}
+
+.product-footer {
+    background: #f9f9f9;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 11px 1.25rem;
+    border-radius: 0 0 12px 12px;
+    box-shadow: inset 0px 4px 8px 0px #e6e6e6bf;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    flex: 0.1;
+    transform: translateY(52px);
+}
+
+.product-card:hover .product-footer {
+    flex: 0.8;
+    transform: translateY(0px);
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.product-price {
+    font-weight: 400;
+    font-size: 15px;
+    color: #0e0e0e;
+}
+
+.buy-button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease 0.1s;
+    background: #28b21e;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgb(139 139 139 / 30%);
+    width: 100%;
+}
+
+.product-card:hover .buy-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.buy-button:hover {
+    background: #1f8717;
+    transform: translateY(-2px);
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff4757;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.old-price {
+    color: #a3a3a3;
+    font-size: 13px;
+    font-weight: 200;
+    margin-right: 0.5rem;
+}
+
+.old-price+.badge {
+    font-size: 12px;
+    padding: 3px 4px 0px;
+}
+
+.sell-count {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1fa726;
+}
+
+.sell-text {
+    font-size: 14px;
+    font-weight: 100;
+    color: #666;
+}
+
+.rate-count {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f8b931;
+}
+
+.rate-text {
+    font-size: 14px;
+    font-weight: 100;
+    color: #666;
 }

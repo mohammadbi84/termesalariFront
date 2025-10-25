@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   var splide = new Splide("#events-slider", {
-    padding: "5rem",
+    padding: "15px",
     direction: "rtl",
-    perPage: 5,
-    gap: "1.2rem",
+    perPage: 4,
+    gap: "1rem",
     drag: "free",
     snap: true,
+    arrows: false, // غیرفعال کردن arrows پیشفرض
+    pagination: false, // غیرفعال کردن pagination پیشفرض
     breakpoints: {
       1200: {
         perPage: 4,
@@ -14,20 +16,62 @@ document.addEventListener("DOMContentLoaded", function () {
         perPage: 3,
       },
       600: {
-        perPage: 2, // مقدار صحیح قرار بدید
-        focus: "center", // اسلاید وسط رو focus کنه
+        perPage: 2,
+        focus: "center",
         gap: "0.6rem",
-        fixedWidth: "calc(66.666% - 0.6rem)", // دو سوم عرض نمایشگر
+        fixedWidth: "calc(66.666% - 0.6rem)",
       },
     },
   });
 
+  // mount اسلایدر
   splide.mount();
 
-  new Splide("#categories", {
-    perPage: 8,
-    gap: "1rem",
-    arrows: true,
+  // گرفتن دکمه‌های سفارشی
+  const prevBtn = document.querySelector(".splide-offer-prev-btn");
+  const nextBtn = document.querySelector(".splide-offer-next-btn");
+
+  // اضافه کردن event listener برای دکمه‌ها
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function () {
+      splide.go("<");
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function () {
+      splide.go(">");
+    });
+  }
+
+  // به‌روزرسانی وضعیت دکمه‌ها هنگام تغییر اسلاید
+  splide.on("moved", function () {
+    updateButtonStates();
+  });
+
+  // تابع برای به‌روزرسانی وضعیت دکمه‌ها
+  function updateButtonStates() {
+    const index = splide.index;
+    const length = splide.length;
+
+    if (prevBtn) {
+      prevBtn.disabled = index === 0;
+    }
+
+    if (nextBtn) {
+      nextBtn.disabled = index >= length - splide.options.perPage;
+    }
+  }
+
+  // مقداردهی اولیه وضعیت دکمه‌ها
+  updateButtonStates();
+
+  // category===========================================================================================
+  var categorySplide = new Splide("#categories", {
+    perPage: 7,
+    padding: "20px",
+    gap: "1.5rem",
+    arrows: false,
     pagination: false,
     direction: "rtl",
     breakpoints: {
@@ -35,7 +79,46 @@ document.addEventListener("DOMContentLoaded", function () {
       768: { perPage: 4 },
       480: { perPage: 4 },
     },
-  }).mount();
+  });
+  categorySplide.mount();
+
+  const prevBtnCategory = document.querySelector(".splide-category-prev-btn");
+  const nextBtnCategory = document.querySelector(".splide-category-next-btn");
+
+  // اضافه کردن event listener برای دکمه‌ها
+  if (prevBtnCategory) {
+    prevBtnCategory.addEventListener("click", function () {
+      categorySplide.go("<");
+    });
+  }
+
+  if (nextBtnCategory) {
+    nextBtnCategory.addEventListener("click", function () {
+      categorySplide.go(">");
+    });
+  }
+
+  // به‌روزرسانی وضعیت دکمه‌ها هنگام تغییر اسلاید
+  categorySplide.on("moved", function () {
+    updateButtonStatesCategory();
+  });
+
+  // تابع برای به‌روزرسانی وضعیت دکمه‌ها
+  function updateButtonStatesCategory() {
+    const index = categorySplide.index;
+    const length = categorySplide.length;
+
+    if (prevBtnCategory) {
+      prevBtnCategory.disabled = index === 0;
+    }
+
+    if (nextBtnCategory) {
+      nextBtnCategory.disabled = index >= length - categorySplide.options.perPage;
+    }
+  }
+
+  // مقداردهی اولیه وضعیت دکمه‌ها
+  updateButtonStatesCategory();
 });
 
 $(document).ready(function () {
