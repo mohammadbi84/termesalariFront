@@ -376,7 +376,7 @@ i {
     box-shadow: inset 0px 4px 8px 0px #e6e6e6bf;
     transition: all 0.3s ease;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     flex: 0.1;
     transform: translateY(52px);
 }
@@ -475,4 +475,417 @@ i {
     font-size: 14px;
     font-weight: 100;
     color: #666;
+}
+
+
+/* hot products======================================================================== */
+.product-div {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 16px;
+}
+
+.product-div:hover {
+    border-top: 3px solid var(--primary-color);
+    border-right: 3px solid var(--primary-color);
+}
+
+.hot-product-card {
+    width: 100%;
+    height: 300px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+    transition: all 0.4s ease;
+    position: relative;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.hot-product-card:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); */
+    height: 308px;
+}
+
+.hot-image-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.hot-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.hot-product-card:hover .hot-image-container {
+    height: 61%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(79, 79, 79, 1) 0%, rgba(224, 94, 94, 0) 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    padding-bottom: 0;
+    color: white;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.hot-product-card:hover .overlay {
+    background: rgba(0, 0, 0, 0);
+    color: #000;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hot-product-card .product-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    transition: all 0.3s ease-in;
+    color: #fff;
+}
+
+.hot-product-card:hover .product-title {
+    transform: translateX(8px);
+    color: #000;
+}
+
+.hot-product-price {
+    transition: all 0.3s ease-in;
+}
+
+.hot-product-card:hover .hot-product-price {
+    transform: translateX(-8px);
+}
+
+.btn-buy {
+    background: #28b21e;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgb(139 139 139 / 30%);
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(140px);
+}
+
+.btn-buy:hover {
+    background: #1e8917;
+    color: #fff;
+}
+
+.hot-product-card:hover .btn-buy {
+    transform: translate3d(8px, 0, 0);
+}
+
+.hot-product-card .price {
+    color: #fff;
+}
+
+.hot-product-card:hover .price {
+    color: #000;
+}
+
+
+
+/* Branchs=========================================================================================== */
+.slider-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+}
+
+/* اسلایدر اصلی (سمت چپ) */
+.left-slider {
+    width: 70%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.left-slider .swiper-slide {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-slider img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.left-slider .info {
+    padding: 1.5rem;
+    text-align: right;
+}
+
+.left-slider h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #2c3e50;
+}
+
+.left-slider .teacher {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.left-slider .price {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+}
+
+.left-slider button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: Vazir, sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(26, 188, 64, 0.3);
+}
+
+.left-slider button:hover {
+    /* background: #16a085; */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(26, 188, 64, 0.4);
+}
+
+/* اسلایدر کوچک (سمت راست) */
+.right-slider {
+    width: 28%;
+    height: 652px;
+    position: relative;
+    padding: 5px 10px;
+}
+
+.right-slider .swiper-slide {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
+    border: 2px solid transparent;
+}
+
+.right-slider .swiper-slide:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.right-slider .swiper-slide-thumb-active {
+    background: #e8f5e9;
+    border-color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+.right-slider img {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.right-slider span {
+    font-size: 0.9rem;
+    color: #2c3e50;
+    line-height: 1.4;
+}
+
+/* عنوان صفحه */
+.page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-size: 1.8rem;
+}
+
+/* دکمه‌های ناوبری */
+.swiper-button-next,
+.swiper-button-prev {
+    background: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 18px;
+    color: #1abc9c;
+    font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: #1abc9c;
+}
+
+.swiper-button-next:hover:after,
+.swiper-button-prev:hover:after {
+    color: white;
+}
+
+/* پیجینیشن */
+.swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #ddd;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: #1abc9c;
+    transform: scale(1.2);
+}
+
+/* پیجینیشن برای اسلایدر کوچک */
+.right-slider .swiper-pagination {
+    bottom: 10px !important;
+}
+
+.right-slider .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+}
+
+/* کنترل‌های اسلایدر اصلی */
+.left-slider-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 0 10px;
+    display: none;
+}
+
+/* کنترل‌های اسلایدر کوچک */
+.right-slider-controls {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    height: 40px;
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+    .slider-container {
+        flex-direction: column-reverse;
+    }
+
+    .left-slider,
+    .right-slider {
+        width: 100%;
+    }
+
+    .right-slider {
+        height: 200px;
+    }
+
+    .right-slider .swiper-slide {
+        flex-direction: row;
+        text-align: right;
+        padding: 10px;
+    }
+
+    .right-slider img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .right-slider span {
+        font-size: 0.85rem;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .right-slider {
+        height: 180px;
+    }
+
+    .right-slider .swiper-slide {
+        padding: 8px;
+    }
+
+    .right-slider img {
+        width: 60px;
+        height: 50px;
+    }
+
+    .right-slider span {
+        font-size: 0.8rem;
+    }
 }

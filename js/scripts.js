@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     direction: "rtl",
     breakpoints: {
       1024: { perPage: 5 },
-      768: { perPage: 4 },
-      480: { perPage: 4 },
+      768: { perPage: 3 },
+      480: { perPage: 3 },
     },
   });
   categorySplide.mount();
@@ -113,12 +113,67 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (nextBtnCategory) {
-      nextBtnCategory.disabled = index >= length - categorySplide.options.perPage;
+      nextBtnCategory.disabled =
+        index >= length - categorySplide.options.perPage;
     }
   }
 
   // مقداردهی اولیه وضعیت دکمه‌ها
   updateButtonStatesCategory();
+
+  // Hot===========================================================================================
+  var HotSplide = new Splide("#hot_slider", {
+    perPage: 4,
+    padding: "20px",
+    gap: "1.5rem",
+    arrows: false,
+    pagination: false,
+    direction: "rtl",
+    breakpoints: {
+      1024: { perPage: 4 },
+      768: { perPage: 2 },
+      480: { perPage: 1 },
+    },
+  });
+  HotSplide.mount();
+
+  const prevBtnHot = document.querySelector(".splide-hot-prev-btn");
+  const nextBtnHot = document.querySelector(".splide-hot-next-btn");
+
+  // اضافه کردن event listener برای دکمه‌ها
+  if (prevBtnHot) {
+    prevBtnHot.addEventListener("click", function () {
+      HotSplide.go("<");
+    });
+  }
+
+  if (nextBtnHot) {
+    nextBtnHot.addEventListener("click", function () {
+      HotSplide.go(">");
+    });
+  }
+
+  // به‌روزرسانی وضعیت دکمه‌ها هنگام تغییر اسلاید
+  HotSplide.on("moved", function () {
+    updateButtonStatesHot();
+  });
+
+  // تابع برای به‌روزرسانی وضعیت دکمه‌ها
+  function updateButtonStatesHot() {
+    const index = HotSplide.index;
+    const length = HotSplide.length;
+
+    if (prevBtnHot) {
+      prevBtnHot.disabled = index === 0;
+    }
+
+    if (nextBtnHot) {
+      nextBtnHot.disabled = index >= length - HotSplide.options.perPage;
+    }
+  }
+
+  // مقداردهی اولیه وضعیت دکمه‌ها
+  updateButtonStatesHot();
 });
 
 $(document).ready(function () {
@@ -187,4 +242,52 @@ $(document).ready(function () {
 
   updateCountdown(); // اجرای اولیه
   setInterval(updateCountdown, 1000); // بروزرسانی هر ثانیه
+
+
+  // branch slider ==============================================================================================
+  // مقداردهی اولیه اسلایدر کوچک
+  const rightSlider = new Swiper(".right-slider", {
+    direction: "vertical",
+    slidesPerView: 5,
+    spaceBetween: 15,
+    watchSlidesProgress: true,
+    slideToClickedSlide: true,
+    pagination: {
+      el: ".right-slider .swiper-pagination",
+      clickable: true,
+    },
+  });
+  
+  // مقداردهی اولیه اسلایدر اصلی
+  const leftSlider = new Swiper(".left-slider", {
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+    thumbs: {
+      swiper: rightSlider,
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".left-slider .swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".left-slider .swiper-button-next",
+      prevEl: ".left-slider .swiper-button-prev",
+    },
+  });
+  
+  // اضافه کردن قابلیت کلیک روی اسلایدهای کوچک
+  document
+    .querySelectorAll(".right-slider .swiper-slide")
+    .forEach((slide, index) => {
+      slide.addEventListener("click", () => {
+        leftSlider.slideTo(index);
+      });
+    });
 });
+
