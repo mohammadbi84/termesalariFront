@@ -243,51 +243,96 @@ $(document).ready(function () {
   updateCountdown(); // اجرای اولیه
   setInterval(updateCountdown, 1000); // بروزرسانی هر ثانیه
 
-
   // branch slider ==============================================================================================
-  // مقداردهی اولیه اسلایدر کوچک
   const rightSlider = new Swiper(".right-slider", {
-    direction: "vertical",
-    slidesPerView: 5,
-    spaceBetween: 15,
-    watchSlidesProgress: true,
-    slideToClickedSlide: true,
-    pagination: {
-      el: ".right-slider .swiper-pagination",
-      clickable: true,
-    },
+  direction: "vertical",
+  slidesPerView: 4,
+  spaceBetween: 15,
+  watchSlidesProgress: true,
+  slideToClickedSlide: true,
+  pagination: {
+    el: ".right-slider .swiper-pagination",
+    clickable: true,
+  },
+  breakpoints: {
+    1200: { slidesPerView: 4, spaceBetween: 15 },
+    992: { slidesPerView: 3, spaceBetween: 12 },
+    768: { slidesPerView: 2, spaceBetween: 10 },
+    0: { slidesPerView: 2, spaceBetween: 8 },
+  },
+});
+
+// اسلایدر اصلی (بدون Drag یا Navigation)
+const leftSlider = new Swiper(".left-slider", {
+  effect: "fade",
+  fadeEffect: { crossFade: true },
+  allowTouchMove: false, // ❌ درگ غیرفعال
+  navigation: false, // ❌ دکمه‌های قبل و بعد غیرفعال
+  pagination: {
+    el: ".left-slider .swiper-pagination",
+    clickable: false, // ❌ کاربر نتونه از Pagination استفاده کنه
+  },
+  thumbs: {
+    swiper: rightSlider,
+  },
+});
+
+// ✅ جلوگیری از انتشار کلیک‌های داخلی
+document
+  .querySelectorAll(
+    ".inner-slider-controls .swiper-button-next, .inner-slider-controls .swiper-button-prev, .inner-slider-controls .swiper-pagination"
+  )
+  .forEach((el) => {
+    el.addEventListener("click", (e) => e.stopPropagation());
   });
-  
-  // مقداردهی اولیه اسلایدر اصلی
-  const leftSlider = new Swiper(".left-slider", {
-    effect: "fade",
-    fadeEffect: {
-      crossFade: true,
-    },
-    thumbs: {
-      swiper: rightSlider,
-    },
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
+
+// ✅ اسلایدرهای داخلی (برای عکس‌های داخل هر اسلاید)
+const innerSliders = [];
+document.querySelectorAll(".inner-image-slider").forEach((sliderElement) => {
+  const innerSwiper = new Swiper(sliderElement, {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
     pagination: {
-      el: ".left-slider .swiper-pagination",
+      el: sliderElement.querySelector(".swiper-pagination"),
       clickable: true,
     },
     navigation: {
-      nextEl: ".left-slider .swiper-button-next",
-      prevEl: ".left-slider .swiper-button-prev",
+      nextEl: sliderElement.querySelector(".swiper-button-next"),
+      prevEl: sliderElement.querySelector(".swiper-button-prev"),
     },
   });
-  
-  // اضافه کردن قابلیت کلیک روی اسلایدهای کوچک
-  document
-    .querySelectorAll(".right-slider .swiper-slide")
-    .forEach((slide, index) => {
-      slide.addEventListener("click", () => {
-        leftSlider.slideTo(index);
-      });
-    });
+  innerSliders.push(innerSwiper);
 });
 
+// ✅ کلیک روی اسلایدهای کوچک (تغییر فقط اسلایدر اصلی)
+document
+  .querySelectorAll(".right-slider .swiper-slide")
+  .forEach((slide, index) => {
+    slide.addEventListener("click", () => {
+      leftSlider.slideTo(index);
+    });
+  });
+
+
+  // go to top button ===================================================================================
+  // JavaScript
+  const backToTopButton = document.getElementById("backToTop");
+
+  // نمایش/مخفی کردن دکمه هنگام اسکرول
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add("show");
+    } else {
+      backToTopButton.classList.remove("show");
+    }
+  });
+
+  // عملکرد کلیک دکمه
+  backToTopButton.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+});
