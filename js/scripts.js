@@ -245,75 +245,74 @@ $(document).ready(function () {
 
   // branch slider ==============================================================================================
   const rightSlider = new Swiper(".right-slider", {
-  direction: "vertical",
-  slidesPerView: 4,
-  spaceBetween: 15,
-  watchSlidesProgress: true,
-  slideToClickedSlide: true,
-  pagination: {
-    el: ".right-slider .swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    1200: { slidesPerView: 4, spaceBetween: 15 },
-    992: { slidesPerView: 3, spaceBetween: 12 },
-    768: { slidesPerView: 2, spaceBetween: 10 },
-    0: { slidesPerView: 2, spaceBetween: 8 },
-  },
-});
-
-// اسلایدر اصلی (بدون Drag یا Navigation)
-const leftSlider = new Swiper(".left-slider", {
-  effect: "fade",
-  fadeEffect: { crossFade: true },
-  allowTouchMove: false, // ❌ درگ غیرفعال
-  navigation: false, // ❌ دکمه‌های قبل و بعد غیرفعال
-  pagination: {
-    el: ".left-slider .swiper-pagination",
-    clickable: false, // ❌ کاربر نتونه از Pagination استفاده کنه
-  },
-  thumbs: {
-    swiper: rightSlider,
-  },
-});
-
-// ✅ جلوگیری از انتشار کلیک‌های داخلی
-document
-  .querySelectorAll(
-    ".inner-slider-controls .swiper-button-next, .inner-slider-controls .swiper-button-prev, .inner-slider-controls .swiper-pagination"
-  )
-  .forEach((el) => {
-    el.addEventListener("click", (e) => e.stopPropagation());
-  });
-
-// ✅ اسلایدرهای داخلی (برای عکس‌های داخل هر اسلاید)
-const innerSliders = [];
-document.querySelectorAll(".inner-image-slider").forEach((sliderElement) => {
-  const innerSwiper = new Swiper(sliderElement, {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    loop: true,
+    direction: "vertical",
+    slidesPerView: 4,
+    spaceBetween: 15,
+    watchSlidesProgress: true,
+    slideToClickedSlide: true,
     pagination: {
-      el: sliderElement.querySelector(".swiper-pagination"),
+      el: ".right-slider .swiper-pagination",
       clickable: true,
     },
-    navigation: {
-      nextEl: sliderElement.querySelector(".swiper-button-next"),
-      prevEl: sliderElement.querySelector(".swiper-button-prev"),
+    breakpoints: {
+      1200: { slidesPerView: 4, spaceBetween: 15 },
+      992: { slidesPerView: 3, spaceBetween: 12 },
+      768: { slidesPerView: 2, spaceBetween: 10 },
+      0: { slidesPerView: 2, spaceBetween: 8 },
     },
   });
-  innerSliders.push(innerSwiper);
-});
 
-// ✅ کلیک روی اسلایدهای کوچک (تغییر فقط اسلایدر اصلی)
-document
-  .querySelectorAll(".right-slider .swiper-slide")
-  .forEach((slide, index) => {
-    slide.addEventListener("click", () => {
-      leftSlider.slideTo(index);
-    });
+  // اسلایدر اصلی (بدون Drag یا Navigation)
+  const leftSlider = new Swiper(".left-slider", {
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    allowTouchMove: false, // ❌ درگ غیرفعال
+    navigation: false, // ❌ دکمه‌های قبل و بعد غیرفعال
+    pagination: {
+      el: ".left-slider .swiper-pagination",
+      clickable: false, // ❌ کاربر نتونه از Pagination استفاده کنه
+    },
+    thumbs: {
+      swiper: rightSlider,
+    },
   });
 
+  // ✅ جلوگیری از انتشار کلیک‌های داخلی
+  document
+    .querySelectorAll(
+      ".inner-slider-controls .swiper-button-next, .inner-slider-controls .swiper-button-prev, .inner-slider-controls .swiper-pagination"
+    )
+    .forEach((el) => {
+      el.addEventListener("click", (e) => e.stopPropagation());
+    });
+
+  // ✅ اسلایدرهای داخلی (برای عکس‌های داخل هر اسلاید)
+  const innerSliders = [];
+  document.querySelectorAll(".inner-image-slider").forEach((sliderElement) => {
+    const innerSwiper = new Swiper(sliderElement, {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      pagination: {
+        el: sliderElement.querySelector(".swiper-pagination"),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: sliderElement.querySelector(".swiper-button-next"),
+        prevEl: sliderElement.querySelector(".swiper-button-prev"),
+      },
+    });
+    innerSliders.push(innerSwiper);
+  });
+
+  // ✅ کلیک روی اسلایدهای کوچک (تغییر فقط اسلایدر اصلی)
+  document
+    .querySelectorAll(".right-slider .swiper-slide")
+    .forEach((slide, index) => {
+      slide.addEventListener("click", () => {
+        leftSlider.slideTo(index);
+      });
+    });
 
   // go to top button ===================================================================================
   // JavaScript
@@ -335,4 +334,63 @@ document
       behavior: "smooth",
     });
   });
+
+  // map===========================================================================================
+  let map;
+let currentMarker;
+
+// وقتی مدال باز می‌شود
+const mapModal = document.getElementById("mapModal");
+mapModal.addEventListener("show.bs.modal", function (event) {
+  const button = event.relatedTarget;
+  const locationName = button.getAttribute("data-location");
+  const lat = parseFloat(button.getAttribute("data-lat"));
+  const lng = parseFloat(button.getAttribute("data-lng"));
+
+  // آپدیت عنوان مدال
+  document.getElementById("mapModalLabel").textContent = `موقعیت ${locationName}`;
+
+  // مقداردهی نقشه
+  initializeMap(lat, lng, locationName);
+});
+
+// بعد از باز شدن کامل مدال (خیلی مهم)
+mapModal.addEventListener("shown.bs.modal", function () {
+  if (map) {
+    map.invalidateSize(); // 👈 ریفرش نقشه برای رفع مشکل رندر داخل مدال
+    map.setView(currentMarker.getLatLng(), 15); // 👈 بازگرداندن مرکز دقیق روی marker
+  }
+});
+
+// وقتی مدال بسته می‌شود
+mapModal.addEventListener("hidden.bs.modal", function () {
+  if (map) {
+    map.remove();
+    map = null;
+    currentMarker = null;
+  }
+});
+
+// تابع مقداردهی نقشه
+function initializeMap(lat, lng, locationName) {
+  map = L.map("map").setView([lat, lng], 15);
+
+  // لایه پایه
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors",
+    maxZoom: 18,
+  }).addTo(map);
+
+  // آیکون سفارشی
+  const customIcon = L.icon({
+    iconUrl: "assets/svgs/location-dot-solid-full.svg",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40],
+  });
+
+  // اضافه کردن marker
+  currentMarker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+}
+
 });

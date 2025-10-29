@@ -43,6 +43,9 @@
     <script src="js/video.js"></script>
     <!-- footer -->
     <link rel="stylesheet" href="css/footer.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="css/leaflet.css" />
 </head>
 
 <body>
@@ -1369,6 +1372,33 @@
             </div>
         </section>
         <!-- end newest products -->
+        <!-- start instagram -->
+        <section>
+            <div class="container mb-5 border px-0">
+                <div id="invite-instagram" class="">
+                    <div class="row m-0" style="background: linear-gradient(270deg, #EE295F 0%, #9033C2 100%);
+                         border-radius: var(--raduis); height: 80px;
+                         align-items: center">
+                        <div class="col-2">
+                            <!-- empty for image place -->
+                        </div>
+
+                        <div class="col-8">
+                            <p class="text-white text-center mb-0 text-bold-3">کلی مطلب آموزشی جالب در اینستاگرام کانون
+                                منتظر
+                                شماست!!!</p>
+                        </div>
+
+                        <div class="col-2">
+                            <a class="btn btn-light w-100 text-blue" href="#">اینجا کلیک کنید</a>
+                        </div>
+                    </div>
+
+                    <img src="assets/svgs/invite-instagram.png" alt="" style="height: 160px; margin-top: -120px">
+                </div>
+            </div>
+        </section>
+        <!-- end instagram -->
         <!-- start video -->
         <section>
             <div class="video-full-container mb-5 px-0">
@@ -1603,12 +1633,18 @@
                     <div class="swiper right-slider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <span>آموزش API نویسی با Node.js</span>
+                                <div class="text-end w-100">
+                                    <h6>تهران</h6>
+                                    <span>آقای صفائی</span>
+                                </div>
                                 <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
                                     alt="آموزش API نویسی" />
                             </div>
                             <div class="swiper-slide">
-                                <span>تست نفوذ با لینوکس PWK</span>
+                                <div class="text-end w-100">
+                                    <h6>تهران</h6>
+                                    <span>آقای میرزایی</span>
+                                </div>
                                 <img src="https://images.unsplash.com/photo-1544890225-2f3faec4cd60?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
                                     alt="تست نفوذ" />
                             </div>
@@ -1650,10 +1686,11 @@
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <h3>آموزش API نویسی با Node.js</h3>
-                                    <p class="teacher">مدرس: پارسا خوشدل</p>
-                                    <p class="price">۶۵۶,۰۰۰ تومان</p>
-                                    <button>مشاهده محصول</button>
+                                    <h3 class="mb-3">مینی سیتی - شهرک شهید محلاتی</h3>
+                                    <div class="w-100 text-start">
+                                        <button data-bs-toggle="modal" data-bs-target="#mapModal" data-location="شیراز"
+                                            data-lat="29.5918" data-lng="52.5837">مشاهده روی نقشه</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -1680,10 +1717,11 @@
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <h3>تست نفوذ با لینوکس PWK</h3>
-                                    <p class="teacher">مدرس: علی مرادی</p>
-                                    <p class="price">۴۹۹,۰۰۰ تومان</p>
-                                    <button>مشاهده محصول</button>
+                                    <h3 class="mb-3">بازار کفاش ها - خانه ترمه ایران</h3>
+                                    <div class="w-100 text-start">
+                                        <button data-bs-toggle="modal" data-bs-target="#mapModal" data-location="اصفهان"
+                                            data-lat="32.6546" data-lng="51.6680">مشاهده روی نقشه</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1698,6 +1736,22 @@
                 </div>
             </div>
         </section>
+
+        <!-- مدال نقشه -->
+        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mapModalLabel">موقعیت روی نقشه</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- end Branchs -->
     </main>
     <footer class="footer">
@@ -1771,6 +1825,9 @@
     <button class="back-to-top" id="backToTop">
         <i class="fa-solid fa-chevron-up fa-lg" style="top: 1px;"></i>
     </button>
+
+    <!-- Leaflet JS -->
+    <script src="js/leaflet.js"></script>
 </body>
 
 </html>

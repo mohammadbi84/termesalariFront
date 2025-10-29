@@ -527,7 +527,7 @@ i {
 }
 
 .hot-product-card:hover .hot-image-container {
-    height: 61%;
+    height: 66%;
 }
 
 .overlay {
@@ -686,7 +686,7 @@ i {
     transition: 0.3s;
     font-family: Vazir, sans-serif;
     font-size: 1rem;
-    width: 100%;
+    /* width: 100%; */
     box-shadow: 0 4px 10px rgba(26, 188, 64, 0.3);
 }
 
@@ -858,13 +858,20 @@ i {
 }
 
 .inner-slider-controls .swiper-pagination {
-    position: relative;
-    bottom: auto;
+    /* position: relative; */
+    /* bottom: auto; */
     width: auto;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: -200px;
+    left: 10px;
+    gap: 5px;
 }
 
 .inner-slider-controls .swiper-button-next,
 .inner-slider-controls .swiper-button-prev {
+    display: none;
     position: relative;
     top: auto;
     margin-top: 0;
@@ -1000,5 +1007,48 @@ i {
         left: 20px;
         width: 45px;
         height: 45px;
+    }
+}
+
+
+
+
+
+
+/* map modal ========================================================================================= */
+/* استایل مدال */
+.modal-header {
+    background: var(--primary-color);
+    color: white;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+/* استایل نقشه */
+#mapModal .modal-body {
+    padding: 0;
+    height: 500px;
+    position: relative;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 0.375rem 0.375rem;
+}
+#mapModal .btn-close{
+    margin:0;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .buttons-container {
+        grid-template-columns: 1fr;
+    }
+
+    #mapModal .modal-body {
+        height: 400px;
     }
 }
