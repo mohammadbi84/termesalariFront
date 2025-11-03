@@ -46,7 +46,7 @@ i {
     height: 100%;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
-    min-height: 350px;
+    min-height: 365px;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -78,7 +78,7 @@ i {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: 100%;
-    height: 220px;
+    height: 260px;
     object-fit: cover;
 }
 
