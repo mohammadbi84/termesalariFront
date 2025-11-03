@@ -319,78 +319,81 @@ $(document).ready(function () {
   const backToTopButton = document.getElementById("backToTop");
 
   // نمایش/مخفی کردن دکمه هنگام اسکرول
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.add("show");
-    } else {
-      backToTopButton.classList.remove("show");
-    }
-  });
-
-  // عملکرد کلیک دکمه
-  backToTopButton.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+  if (backToTopButton) {
+    window.addEventListener("scroll", function () {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add("show");
+      } else {
+        backToTopButton.classList.remove("show");
+      }
     });
-  });
+
+    // عملکرد کلیک دکمه
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
 
   // map===========================================================================================
   let map;
-let currentMarker;
+  let currentMarker;
 
-// وقتی مدال باز می‌شود
-const mapModal = document.getElementById("mapModal");
-mapModal.addEventListener("show.bs.modal", function (event) {
-  const button = event.relatedTarget;
-  const locationName = button.getAttribute("data-location");
-  const lat = parseFloat(button.getAttribute("data-lat"));
-  const lng = parseFloat(button.getAttribute("data-lng"));
+  // وقتی مدال باز می‌شود
+  const mapModal = document.getElementById("mapModal");
+  mapModal.addEventListener("show.bs.modal", function (event) {
+    const button = event.relatedTarget;
+    const locationName = button.getAttribute("data-location");
+    const lat = parseFloat(button.getAttribute("data-lat"));
+    const lng = parseFloat(button.getAttribute("data-lng"));
 
-  // آپدیت عنوان مدال
-  document.getElementById("mapModalLabel").textContent = `موقعیت ${locationName}`;
+    // آپدیت عنوان مدال
+    document.getElementById(
+      "mapModalLabel"
+    ).textContent = `موقعیت ${locationName}`;
 
-  // مقداردهی نقشه
-  initializeMap(lat, lng, locationName);
-});
-
-// بعد از باز شدن کامل مدال (خیلی مهم)
-mapModal.addEventListener("shown.bs.modal", function () {
-  if (map) {
-    map.invalidateSize(); // 👈 ریفرش نقشه برای رفع مشکل رندر داخل مدال
-    map.setView(currentMarker.getLatLng(), 15); // 👈 بازگرداندن مرکز دقیق روی marker
-  }
-});
-
-// وقتی مدال بسته می‌شود
-mapModal.addEventListener("hidden.bs.modal", function () {
-  if (map) {
-    map.remove();
-    map = null;
-    currentMarker = null;
-  }
-});
-
-// تابع مقداردهی نقشه
-function initializeMap(lat, lng, locationName) {
-  map = L.map("map").setView([lat, lng], 15);
-
-  // لایه پایه
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "© OpenStreetMap contributors",
-    maxZoom: 18,
-  }).addTo(map);
-
-  // آیکون سفارشی
-  const customIcon = L.icon({
-    iconUrl: "assets/svgs/location-dot-solid-full.svg",
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-    popupAnchor: [0, -40],
+    // مقداردهی نقشه
+    initializeMap(lat, lng, locationName);
   });
 
-  // اضافه کردن marker
-  currentMarker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
-}
+  // بعد از باز شدن کامل مدال (خیلی مهم)
+  mapModal.addEventListener("shown.bs.modal", function () {
+    if (map) {
+      map.invalidateSize(); // 👈 ریفرش نقشه برای رفع مشکل رندر داخل مدال
+      map.setView(currentMarker.getLatLng(), 15); // 👈 بازگرداندن مرکز دقیق روی marker
+    }
+  });
 
+  // وقتی مدال بسته می‌شود
+  mapModal.addEventListener("hidden.bs.modal", function () {
+    if (map) {
+      map.remove();
+      map = null;
+      currentMarker = null;
+    }
+  });
+
+  // تابع مقداردهی نقشه
+  function initializeMap(lat, lng, locationName) {
+    map = L.map("map").setView([lat, lng], 15);
+
+    // لایه پایه
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+      maxZoom: 18,
+    }).addTo(map);
+
+    // آیکون سفارشی
+    const customIcon = L.icon({
+      iconUrl: "assets/svgs/location-dot-solid-full.svg",
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -40],
+    });
+
+    // اضافه کردن marker
+    currentMarker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+  }
 });
