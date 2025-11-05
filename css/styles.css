@@ -702,12 +702,16 @@ i {
     height: 500px;
     position: relative;
     padding: 5px 13px;
+    overflow: hidden; /* اضافه شده */
 }
 
 .right-slider .swiper-wrapper {
     direction: ltr;
     overflow-y: auto;
     padding: 4px 8px;
+    transform: none !important; /* غیرفعال کردن transform برای اسکرول طبیعی */
+    flex-direction: column; /* تغییر به حالت عمودی */
+    display: block; /* تغییر از flex به block برای اسکرول */
 }
 
 .right-slider .swiper-wrapper::-webkit-scrollbar {
@@ -730,6 +734,12 @@ i {
     cursor: pointer;
     transition: 0.3s;
     border: 2px solid transparent;
+    margin-bottom: 10px; /* فاصله بین اسلایدها */
+    width: 100% !important; /* عرض کامل */
+    height: auto !important; /* ارتفاع خودکار */
+}
+.right-slider-controls {
+    display: none; /* مخفی کردن کنترل‌ها در دسکتاپ */
 }
 
 .right-slider .swiper-slide:hover {
@@ -744,9 +754,9 @@ i {
 }
 
 .right-slider img {
-    width: 80px;
+    width: 60px;
     height: 60px;
-    border-radius: 8px;
+    border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -832,18 +842,6 @@ i {
     display: none;
 }
 
-/* کنترل‌های اسلایدر کوچک */
-.right-slider-controls {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    height: 40px;
-}
-
 /* کنترل‌های اسلایدر داخلی */
 .inner-slider-controls {
     position: absolute;
@@ -855,18 +853,19 @@ i {
     align-items: center;
     padding: 0 20px;
     z-index: 10;
+    top: 0;
+    height: 100%;
 }
 
 .inner-slider-controls .swiper-pagination {
-    /* position: relative; */
-    /* bottom: auto; */
     width: auto;
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: -200px;
     left: 10px;
     gap: 5px;
+        justify-content: center;
+    top: 0;
 }
 
 .inner-slider-controls .swiper-button-next,
@@ -887,6 +886,37 @@ i {
     font-size: 14px;
     color: #1abc9c;
     font-weight: bold;
+}
+
+
+.inner-slider-controls .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background-color: #fff; /* رنگ دایره توپر */
+  opacity: 1;
+  margin: 6px !important;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* وقتی دکمه فعال میشه */
+.inner-slider-controls .swiper-pagination-bullet-active {
+  background-color: #fff; /* رنگ وسط */
+}
+
+/* حلقه دور دکمه فعال */
+.inner-slider-controls .swiper-pagination-bullet-active::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff; /* رنگ حلقه */
+  border-radius: 50%;
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 /* ریسپانسیو */
@@ -932,11 +962,6 @@ i {
 }
 
 @media (max-width: 576px) {
-    .left-slider-controls {
-        margin-top: 0px;
-        /* display: flex; */
-    }
-
     .swiper-pagination {
         margin-top: 0;
     }
@@ -962,6 +987,10 @@ i {
 
     .right-slider span {
         font-size: 0.8rem;
+    }
+
+    .left-slider-controls {
+        display: flex; /* نمایش کنترل‌ها در موبایل */
     }
 }
 
