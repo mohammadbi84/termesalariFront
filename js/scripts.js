@@ -452,3 +452,19 @@ $(document).ready(function () {
     currentMarker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
   }
 });
+
+// نمایش خودکار پاپ‌آپ بعد از لود صفحه
+document.addEventListener("DOMContentLoaded", function () {
+  var myModal = new bootstrap.Modal(document.getElementById("customModal"));
+  myModal.show();
+  new Splide("#modal-slider", {
+    type: "slide",
+    perPage: 1,
+    pagination: true,
+    arrows: false,
+    rewind: true,
+    height: "400px",
+    cover: true,
+    autoplay: true,
+  }).mount();
+});

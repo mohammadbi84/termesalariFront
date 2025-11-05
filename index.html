@@ -50,6 +50,68 @@
 
 <body>
     <header>
+        <!-- start popup -->
+         <div class="modal fade" id="customModal" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true"
+            dir="rtl">
+            <div class="modal-dialog modal-dialog-centered modal-lg rounded-2">
+                <div class="modal-content" style="border-radius: 12px !important">
+                    <div class="modal-body p-0">
+                        <!-- Slider section with close button and badge -->
+                        <div class="position-relative">
+                            <button type="button" class="btn btn-light position-absolute top-0 start-0 modal-close-btn"
+                                data-bs-dismiss="modal"
+                                style="border-radius: 0 0 12px 0 !important;padding: 0 !important;z-index: 2;width: 41px;height: 41px;">
+                                <i class="fa-solid fa-xmark" style="font-size: x-large;position: relative;top: 2.5px;"></i>
+                            </button>
+
+                            <div class="splide" id="modal-slider" style="direction: ltr;">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <li class="splide__slide">
+                                            <div class="modal-image-container">
+                                                <img src="assets/sliders/slider1.jpg" class="img-fluid w-100"
+                                                    alt="اسلایدر" style="height: 400px; object-fit: cover;">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <img src="assets/sliders/slider2.jpg" class="img-fluid w-100"
+                                                alt="اسلایدر" style="height: 400px; object-fit: cover;">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content section -->
+                        <div class="p-4 px-5" style="direction: ltr;">
+                            <!-- Title -->
+                            <h2 class="fw-bold mb-3 text-center" dir="rtl">عنوان پاپ آپ</h2>
+
+                            <!-- Description -->
+                            <p class="text-muted text-center mb-4" dir="rtl">
+                                متن پاپ اپ
+                            </p>
+
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-text-link px-4 py-2" data-bs-dismiss="modal">
+                                    بعدا چک میکنم
+                                </button>
+                                <button type="button" class="btn btn-primary d-flex align-items-center px-4 py-2">
+                                    دیدن پیشنهاد ویژه
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end popup -->
         <!-- بوکمارک -->
         <div class="bookmark-container">
             <div class="bookmark expanded" id="bookmark">
@@ -454,10 +516,21 @@
                                             </div>
 
                                             <div
-                                                class="d-flex align-items-center align-content-center justify-content-start mb-2 h-100">
-                                                <h5 class="product-title text-start">
-                                                    نام محصول
-                                                </h5>
+                                                class="d-flex align-items-center align-content-center justify-content-center mb-2 h-100 w-100" style="flex-direction: column;">
+                                                <div class="text-center w-100">
+                                                    <h5 class="product-title text-center mb-3">
+                                                        نام محصول
+                                                    </h5>
+                                                    <a href="#" class="btn btn-primary mb-3">مشاهده محصول</a>
+                                                    <div class="w-100 row justify-content-between align-items-center mx-0 px-2">
+                                                        <div class="col-9 text-end">
+                                                            <span class="fs-10 p-0">10 عدد فروش رفته</span>
+                                                        </div>
+                                                        <div class="col-3 p-0">
+                                                            <button class="buy-button add-to-cart offer-cart-btn"><i class="fa-solid fa-cart-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div
                                                 class="product-details d-flex align-items-center justify-content-between gap-2">
@@ -1221,7 +1294,14 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="buy-button">افزودن به سبد</button>
+                                        <div class="row g-0 w-100 product-footer-outrange">
+                                            <div class="col-3 pe-2">
+                                                <button class="buy-button add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                                            </div>
+                                            <div class="col-9 ps-2">
+                                                <a href="#" class="buy-button text-decoration-none">مشاهده</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1266,7 +1346,14 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="buy-button">افزودن به سبد</button>
+                                        <div class="row g-0 w-100 product-footer-outrange">
+                                            <div class="col-3 pe-2">
+                                                <button class="buy-button add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                                            </div>
+                                            <div class="col-9 ps-2">
+                                                <a href="#" class="buy-button text-decoration-none">مشاهده</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1314,7 +1401,14 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="buy-button">افزودن به سبد</button>
+                                        <div class="row g-0 w-100 product-footer-outrange">
+                                            <div class="col-3 pe-2">
+                                                <button class="buy-button add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                                            </div>
+                                            <div class="col-9 ps-2">
+                                                <a href="#" class="buy-button text-decoration-none">مشاهده</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1362,7 +1456,14 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="buy-button">افزودن به سبد</button>
+                                        <div class="row g-0 w-100 product-footer-outrange">
+                                            <div class="col-3 pe-2">
+                                                <button class="buy-button add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                                            </div>
+                                            <div class="col-9 ps-2">
+                                                <a href="#" class="buy-button text-decoration-none">مشاهده</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
