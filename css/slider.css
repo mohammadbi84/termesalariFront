@@ -360,7 +360,7 @@
 }
 
 .pagination-item.active {
-    border-color: #fdfdfd;
+    border-color: var(--primary-color);
     transform: scale(1.1);
 }
 

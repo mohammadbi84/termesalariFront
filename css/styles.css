@@ -124,7 +124,7 @@ i {
 
 .flip-card-front .details {
     width: 100%;
-    padding: 8px 10px !important;
+    padding: 8px 18px !important;
     transform: translateZ(1px);
     text-align: center;
 }
@@ -141,9 +141,9 @@ i {
     transform: translateZ(50px);
 }
 
-.flip-card-back div {
+/* .flip-card-back div {
     transform: translateZ(50px);
-}
+} */
 
 .flip-card-back .adv-btn {
     transform: translateZ(50px);
@@ -365,9 +365,12 @@ i {
 
 .product-title {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 0.4rem;
     color: #333;
+}
+.product-details{
+    border-top: 1px solid #ccc;
 }
 
 .product-description {
@@ -398,7 +401,7 @@ i {
 
 .product-card:hover .product-footer {
     flex: 0.8;
-    transform: translateY(0px);
+    transform: translateY(-5px);
 }
 
 .price-container {
@@ -419,7 +422,7 @@ i {
     /* opacity: 0;
     transform: translateY(20px); */
     transition: all 0.3s ease 0.1s;
-    background: #28b21e;
+    background: var(--primary-color);
     border: none;
     padding: 0.5rem 1.5rem;
     border-radius: 8px;
@@ -429,6 +432,7 @@ i {
     width: 100%;
     display: block;
     text-align: center;
+    height: 100%;
 }
 .product-footer-outrange{
     opacity: 0;
@@ -445,15 +449,19 @@ i {
     transform: translateY(-2px);
 }
 .add-to-cart{
-    background-color: #4fba6c2e;
+    background-color: #52AC661F;
     color: var(--primary-color) !important;
     padding: 0;
-    height: 100%;
     border: 1px solid transparent;
+    width: 45px;
+    height: 45px;
 }
 .add-to-cart:hover{
-    background-color: #4fba6c2e;
+    background-color: var(--primary-color);
     border: 1px solid var(--primary-color) !important;
+}
+.add-to-cart:hover i{
+    color: white;
 }
 
 .container {
@@ -658,14 +666,14 @@ i {
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 30px 15px;
     position: relative;
 }
 
 /* اسلایدر اصلی (سمت چپ) */
 .left-slider {
     width: 70%;
-    border-radius: 16px;
+    border-radius: 8px;
     overflow: hidden;
     background: white;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -690,14 +698,14 @@ i {
 }
 
 .left-slider h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
     color: #2c3e50;
 }
 
 .left-slider .teacher {
     color: #7f8c8d;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
     font-size: 0.95rem;
 }
 
@@ -712,7 +720,7 @@ i {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 0.8rem;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
@@ -735,6 +743,7 @@ i {
     position: relative;
     padding: 5px 13px;
     overflow: hidden;
+    padding-right: 0;
     /* اضافه شده */
 }
 
@@ -747,6 +756,7 @@ i {
     flex-direction: column;
     /* تغییر به حالت عمودی */
     display: block;
+    
     /* تغییر از flex به block برای اسکرول */
 }
 
@@ -765,7 +775,7 @@ i {
     justify-content: space-between;
     gap: 12px;
     background: #f0f0f0;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 12px;
     cursor: pointer;
     transition: 0.3s;
@@ -783,15 +793,13 @@ i {
     /* مخفی کردن کنترل‌ها در دسکتاپ */
 }
 
-.right-slider .swiper-slide:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
 .right-slider .swiper-slide-thumb-active {
-    background: #e8f5e9;
-    border-color: var(--primary-color);
+    background: #52ac66;
     transform: scale(1.02);
+    color: white;
+}
+.right-slider .swiper-slide-thumb-active span {
+    color: white;
 }
 
 .right-slider img {

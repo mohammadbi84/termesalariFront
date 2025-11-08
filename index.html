@@ -116,7 +116,7 @@
         <div class="bookmark-container">
             <div class="bookmark expanded" id="bookmark">
                 <div class="bookmark-content">
-                    <div class="bookmark-text d-flex align-items-center justify-content-between h-100 gap-3">
+                    <div class="bookmark-text d-flex align-items-center justify-content-start h-100 gap-3">
                         <h6 class="m-0">پیشنهاد ویژه!</h6>
                         <p class="m-0">تا ۵۰٪ تخفیف برای خریدهای بالای ۱,۰۰۰,۰۰۰ <svg viewBox="0 0 15 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -132,68 +132,23 @@
         <!-- navbar -->
         <div class="main-menu rounded-3">
             <nav class="navbar navbar-expand-lg">
-                <div class="container p-0">
+                <div class="container menu-container p-0">
                     <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
                         <img src="assets/logo/logo.webp" alt="website logo">
-                        <h5 class="me-3 mb-0 fw-bold">ترمه سالاری</h5>
                     </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" id="mobileMenuToggle">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0 column-gap-2">
+                        <ul class="navbar-nav mb-2 mb-lg-0 column-gap-2 px-0">
                             <!-- دکمه دسته‌بندی‌ها -->
-                            <div class="categories-dropdown d-flex">
+                            <div class="categories-dropdown d-flex" id="categoryTrigger">
                                 <button class="categories-btn">
                                     <i class="fas fa-bars"></i>
                                     دسته‌بندی‌ها
                                 </button>
-
-                                <!-- منوی کشویی دسته‌بندی‌ها -->
-                                <div class="categories-menu">
-                                    <div class="category-container border py-2">
-                                        <!-- دسته‌بندی با زیرمنو -->
-                                        <div class="has-submenu" style="position: relative;">
-                                            <a href="#" class="category-item">
-                                                <span>دوچرخه‌ها</span>
-                                                <i class="fas fa-chevron-left"></i>
-                                            </a>
-
-                                            <!-- زیرمنو -->
-                                            <div class="submenu border">
-                                                <a href="#" class="submenu-item">دوچرخه کوهستان</a>
-                                                <a href="#" class="submenu-item">دوچرخه شهری</a>
-                                                <a href="#" class="submenu-item">دوچرخه کورسی</a>
-                                                <a href="#" class="submenu-item">دوچرخه تاشو</a>
-                                                <a href="#" class="submenu-item">دوچرخه برقی</a>
-                                            </div>
-                                        </div>
-
-                                        <a href="#" class="category-item">
-                                            <span>لوازم جانبی</span>
-                                        </a>
-
-                                        <a href="#" class="category-item">
-                                            <span>پوشاک دوچرخه‌سواری</span>
-                                        </a>
-
-                                        <a href="#" class="category-item">
-                                            <span>قطعات و ابزار</span>
-                                        </a>
-
-                                        <a href="#" class="category-item">
-                                            <span>کلاه و محافظ</span>
-                                        </a>
-
-                                        <a href="#" class="category-item">
-                                            <span>کفش مخصوص</span>
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
 
                             <li class="nav-item">
@@ -359,7 +314,228 @@
                     </div>
                 </div>
             </nav>
+            <!-- منوی دسته‌بندی برای دسکتاپ -->
+        <div class="category-menu" id="categoryMenu">
+            <div class="category-content">
+                <div class="row">
+                    <!-- ستون 1 -->
+                    <div class="col-lg-3 col-md-6 category-column">
+                        <a href="#" class="main-categories">الکترونیک و دیجیتال</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">موبایل و تبلت</a></li>
+                            <li><a href="#">لپ‌تاپ و کامپیوتر</a></li>
+                            <li><a href="#">هدفون و هندزفری</a></li>
+                            <li><a href="#">دوربین عکاسی</a></li>
+                            <li><a href="#">گجت و لوازم جانبی</a></li>
+                            <li><a href="#">کنسول بازی</a></li>
+                            <li><a href="#">مودم و شبکه</a></li>
+                        </ul>
+                        
+                        <a href="#" class="main-categories">مد و پوشاک</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">لباس مردانه</a></li>
+                            <li><a href="#">لباس زنانه</a></li>
+                            <li><a href="#">کفش</a></li>
+                            <li><a href="#">ساعت و طلا</a></li>
+                            <li><a href="#">کیف و کوله</a></li>
+                            <li><a href="#">اکسسوری</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- ستون 2 -->
+                    <div class="col-lg-3 col-md-6 category-column">
+                        <a href="#" class="main-categories">خانه و آشپزخانه</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">مبلمان و اتاق پذیرایی</a></li>
+                            <li><a href="#">لوازم آشپزخانه</a></li>
+                            <li><a href="#">دکوراسیون و روشنایی</a></li>
+                            <li><a href="#">لوازم بهداشتی</a></li>
+                            <li><a href="#">وسایل نظافتی</a></li>
+                            <li><a href="#">فرش و گلیم</a></li>
+                        </ul>
+                        
+                        <a href="#" class="main-categories">کالای سوپرمارکتی</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">مواد غذایی</a></li>
+                            <li><a href="#">نوشیدنی</a></li>
+                            <li><a href="#">خواروبار</a></li>
+                            <li><a href="#">لوازم آرایشی</a></li>
+                            <li><a href="#">شوینده و بهداشتی</a></li>
+                            <li><a href="#">تنقلات</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- ستون 3 -->
+                    <div class="col-lg-3 col-md-6 category-column">
+                        <a href="#" class="main-categories">کتاب و لوازم تحریر</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">کتاب دانشگاهی</a></li>
+                            <li><a href="#">کتاب عمومی</a></li>
+                            <li><a href="#">لوازم التحریر</a></li>
+                            <li><a href="#">کتاب کودک</a></li>
+                            <li><a href="#">نرم‌افزار آموزشی</a></li>
+                            <li><a href="#">کتاب‌های کمک‌آموزشی</a></li>
+                        </ul>
+                        
+                        <a href="#" class="main-categories">ورزش و سفر</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">لوازم ورزشی</a></li>
+                            <li><a href="#">پوشاک ورزشی</a></li>
+                            <li><a href="#">کفش ورزشی</a></li>
+                            <li><a href="#">چادر و لوازم کمپینگ</a></li>
+                            <li><a href="#">کوله‌پشتی و ساک</a></li>
+                            <li><a href="#">دوچرخه</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- ستون 4 -->
+                    <div class="col-lg-3 col-md-6 category-column">
+                        <a href="#" class="main-categories">اسباب‌بازی و کودک</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">اسباب‌بازی</a></li>
+                            <li><a href="#">پوشاک کودک</a></li>
+                            <li><a href="#">کالسکه و لوازم نوزاد</a></li>
+                            <li><a href="#">سرگرمی و آموزشی</a></li>
+                            <li><a href="#">لوازم بهداشتی کودک</a></li>
+                            <li><a href="#">وسایل غذاخوری کودک</a></li>
+                        </ul>
+                        
+                        <a href="#" class="main-categories">خودرو و موتورسیکلت</a>
+                        <ul class="sub-categories">
+                            <li><a href="#">لوازم یدکی خودرو</a></li>
+                            <li><a href="#">لوازم جانبی خودرو</a></li>
+                            <li><a href="#">موتورسیکلت</a></li>
+                            <li><a href="#">لوازم موتورسیکلت</a></li>
+                            <li><a href="#">تجهیزات کارواش</a></li>
+                            <li><a href="#">سیستم صوتی خودرو</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+        </div>
+    <!-- آکاردئون موبایل -->
+    <div class="mobile-category-menu" id="mobileCategoryMenu">
+        <div class="mobile-category-header">
+            <span>دسته‌بندی‌ها</span>
+            <button type="button" id="closeMobileMenu" class="btn-close btn-close-white"></button>
+        </div>
+        <div class="mobile-category-content">
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileElectronics">
+                    الکترونیک و دیجیتال
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileElectronics">
+                    <li><a href="#">موبایل و تبلت</a></li>
+                    <li><a href="#">لپ‌تاپ و کامپیوتر</a></li>
+                    <li><a href="#">هدفون و هندزفری</a></li>
+                    <li><a href="#">دوربین عکاسی</a></li>
+                    <li><a href="#">گجت و لوازم جانبی</a></li>
+                    <li><a href="#">کنسول بازی</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileFashion">
+                    مد و پوشاک
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileFashion">
+                    <li><a href="#">لباس مردانه</a></li>
+                    <li><a href="#">لباس زنانه</a></li>
+                    <li><a href="#">کفش</a></li>
+                    <li><a href="#">ساعت و طلا</a></li>
+                    <li><a href="#">کیف و کوله</a></li>
+                    <li><a href="#">اکسسوری</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileHome">
+                    خانه و آشپزخانه
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileHome">
+                    <li><a href="#">مبلمان و اتاق پذیرایی</a></li>
+                    <li><a href="#">لوازم آشپزخانه</a></li>
+                    <li><a href="#">دکوراسیون و روشنایی</a></li>
+                    <li><a href="#">لوازم بهداشتی</a></li>
+                    <li><a href="#">وسایل نظافتی</a></li>
+                    <li><a href="#">فرش و گلیم</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileSupermarket">
+                    کالای سوپرمارکتی
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileSupermarket">
+                    <li><a href="#">مواد غذایی</a></li>
+                    <li><a href="#">نوشیدنی</a></li>
+                    <li><a href="#">خواروبار</a></li>
+                    <li><a href="#">لوازم آرایشی</a></li>
+                    <li><a href="#">شوینده و بهداشتی</a></li>
+                    <li><a href="#">تنقلات</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileBooks">
+                    کتاب و لوازم تحریر
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileBooks">
+                    <li><a href="#">کتاب دانشگاهی</a></li>
+                    <li><a href="#">کتاب عمومی</a></li>
+                    <li><a href="#">لوازم التحریر</a></li>
+                    <li><a href="#">کتاب کودک</a></li>
+                    <li><a href="#">نرم‌افزار آموزشی</a></li>
+                    <li><a href="#">کتاب‌های کمک‌آموزشی</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileSports">
+                    ورزش و سفر
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileSports">
+                    <li><a href="#">لوازم ورزشی</a></li>
+                    <li><a href="#">پوشاک ورزشی</a></li>
+                    <li><a href="#">کفش ورزشی</a></li>
+                    <li><a href="#">چادر و لوازم کمپینگ</a></li>
+                    <li><a href="#">کوله‌پشتی و ساک</a></li>
+                    <li><a href="#">دوچرخه</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileToys">
+                    اسباب‌بازی و کودک
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileToys">
+                    <li><a href="#">اسباب‌بازی</a></li>
+                    <li><a href="#">پوشاک کودک</a></li>
+                    <li><a href="#">کالسکه و لوازم نوزاد</a></li>
+                    <li><a href="#">سرگرمی و آموزشی</a></li>
+                    <li><a href="#">لوازم بهداشتی کودک</a></li>
+                    <li><a href="#">وسایل غذاخوری کودک</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileAuto">
+                    خودرو و موتورسیکلت
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileAuto">
+                    <li><a href="#">لوازم یدکی خودرو</a></li>
+                    <li><a href="#">لوازم جانبی خودرو</a></li>
+                    <li><a href="#">موتورسیکلت</a></li>
+                    <li><a href="#">لوازم موتورسیکلت</a></li>
+                    <li><a href="#">تجهیزات کارواش</a></li>
+                    <li><a href="#">سیستم صوتی خودرو</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- overlay برای بستن منوی موبایل -->
+    <div class="overlay" id="overlay"></div>
     </header>
     <main>
         <!-- slider -->
@@ -1246,9 +1422,16 @@
         <!-- start newest products -->
         <section>
             <div class="container mb-5 px-0">
-                <div class=" d-flex align-items-center gap-2 p-2">
-                    <img src="assets/svgs/hot.svg" alt="جدیدترین محصولات" width="26">
-                    <h2 class="title m-0">جدیدترین محصولات</h2>
+                <div class=" d-flex justify-content-between align-items-center p-2 w-100">
+                    <div class=" d-flex align-items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="31.5" height="31.5" viewBox="0 0 21.5 21.5"><g transform="translate(100 -9)"><path d="M.828,86.625a.828.828,0,0,0,.828-.828V80.828a.828.828,0,0,0-1.656,0V85.8A.828.828,0,0,0,.828,86.625Z" transform="translate(-100 -67.619)" fill="#ffb726"></path><path d="M472.828,80a.828.828,0,0,0-.828.828V85.8a.828.828,0,1,0,1.656,0V80.828A.828.828,0,0,0,472.828,80Z" transform="translate(-552.156 -67.619)" fill="#ffb726"></path><path d="M91.117,9.238V2.52A2.522,2.522,0,0,0,88.6,0H78.52A2.522,2.522,0,0,0,76,2.52V9.238a7.569,7.569,0,0,0,6.719,7.512v3.07H80.2a.84.84,0,0,0,0,1.68h6.719a.84.84,0,0,0,0-1.68H84.4V16.75A7.569,7.569,0,0,0,91.117,9.238Zm-13.437,0V2.52a.841.841,0,0,1,.84-.84H88.6a.841.841,0,0,1,.84.84V9.238a5.879,5.879,0,1,1-11.758,0Z" transform="translate(-172.853 9)" fill="#ffb726"></path><path d="M161.418,84.945l-.289,1.74a.828.828,0,0,0,1.2.871l1.566-.813,1.566.813a.828.828,0,0,0,1.2-.871l-.289-1.74,1.257-1.238a.828.828,0,0,0-.458-1.409l-1.744-.263-.789-1.578a.828.828,0,0,0-1.482,0l-.789,1.578-1.744.263a.828.828,0,0,0-.458,1.409Zm1.617-1.336a.828.828,0,0,0,.617-.449l.24-.481.24.481a.828.828,0,0,0,.617.449l.532.08-.383.377a.828.828,0,0,0-.236.726l.088.53-.477-.248a.828.828,0,0,0-.763,0l-.477.248.088-.53a.828.828,0,0,0-.236-.726l-.383-.377Z" transform="translate(-253.143 -67.613)" fill="#ffb726"></path></g></svg>
+                        <h2 class="title m-0">جدیدترین محصولات</h2>
+                    </div>
+                    <div class="">
+                        <a href="#" class="btn btn-primary">
+                            مشاهده بیشتر
+                        </a>
+                    </div>
                 </div>
                 <div class="row g-0 p-2">
                     <!-- محصول 1 -->
@@ -1505,11 +1688,11 @@
         <!-- start video -->
         <section>
             <div class="video-full-container mb-5 px-0">
-                <video id="fullscreen-video" loop>
-                    <!-- منبع ویدیو - میتوانید آدرس ویدیوی خود را جایگزین کنید -->
+                <!-- <video id="fullscreen-video">
                     <source src="assets/sliders/fazel.mp4" type="video/mp4">
                     مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
-                </video>
+                </video> -->
+                <img src="assets/sliders/slider1.jpg" alt="video" id="fullscreen-video">
 
                 <div class="video-overlay"></div>
 

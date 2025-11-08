@@ -1,314 +1,648 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نوبار با منوی دسته‌بندی</title>
-
-    <!-- لینک CDN ها -->
+    <title>نوبار با منوی دسته‌بندی و آکاردئون موبایل</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- استایل‌های سفارشی -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary-color: #28a745;
-            --secondary-color: #ffc107;
-            --dark-color: #343a40;
-            --light-color: #f8f9fa;
+            --primary-color: #198754;
+            --hover-color: #146c43;
         }
-
+        
         body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #f5f5f5;
-            padding-top: 80px;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 76px;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
         }
-
-        .navbar-custom {
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
         }
-
-        .navbar-brand img {
-            height: 40px;
-        }
-
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 1rem;
-            font-weight: 500;
-            color: #333;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
+        
+        .navbar-brand {
+            font-weight: bold;
             color: var(--primary-color);
         }
-
-        /* انیمیشن خط زیر لینک‌ها */
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
+        
+        .category-btn {
+            position: relative;
+        }
+        
+        /* منوی دسته‌بندی برای دسکتاپ */
+        .category-menu {
+            position: fixed;
+            top: 76px;
+            left: 0;
             right: 0;
-            width: 0;
-            height: 2px;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            border-top: 2px solid var(--primary-color);
+            padding: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .category-menu.active {
+            opacity: 1;
+            visibility: visible;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .category-header {
             background-color: var(--primary-color);
-            transition: width 0.3s ease;
+            color: white;
+            padding: 15px 30px;
+            font-weight: bold;
+            font-size: 1.3rem;
         }
-
-        .nav-link:hover::after {
-            width: 100%;
+        
+        .category-content {
+            padding: 40px 30px;
         }
-
-        /* دکمه دسته‌بندی‌ها */
-        .categories-btn {
+        
+        .main-categories {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            display: block;
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .main-categories:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .sub-categories {
+            list-style: none;
+            padding-right: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .sub-categories li {
+            margin-bottom: 8px;
+        }
+        
+        .sub-categories a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: block;
+            padding: 3px 0;
+        }
+        
+        .sub-categories a:hover {
+            color: var(--primary-color);
+            padding-right: 5px;
+        }
+        
+        .search-box {
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+        }
+        
+        .search-btn {
+            border-radius: 20px;
+            padding: 8px 20px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-
-        .categories-btn:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
+        
+        .search-btn:hover {
+            background-color: var(--hover-color);
         }
-
-        /* منوی کشویی دسته‌بندی‌ها */
-        .categories-dropdown {
-            position: relative;
+        
+        .category-column {
+            margin-bottom: 10px;
         }
-
-        .categories-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 250px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 0.5rem;
-            padding: 1rem 0;
-            z-index: 1000;
-            display: none;
-            margin-top: 0.5rem;
-        }
-
-        .categories-dropdown:hover .categories-menu {
-            display: block;
-        }
-
-        .category-item {
-            padding: 0.5rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #333;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .category-item:hover {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-            padding-right: 2rem;
-        }
-
-        .category-item i {
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        /* زیرمنو */
-        .submenu {
-            position: absolute;
+        
+        /* آکاردئون موبایل */
+        .mobile-category-menu {
+            position: fixed;
             top: 0;
-            right: 100%;
-            width: 200px;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
             background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 0.5rem;
-            padding: 1rem 0;
-            display: none;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1100;
+            transition: right 0.3s ease;
+            overflow-y: auto;
         }
-
-        .has-submenu:hover .submenu {
-            display: block;
+        
+        .mobile-category-menu.active {
+            right: 0;
         }
-
-        .submenu-item {
-            padding: 0.5rem 1.5rem;
-            display: block;
+        
+        .mobile-category-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-category-content {
+            padding: 20px;
+        }
+        
+        .mobile-main-category {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-main-category button {
+            width: 100%;
+            text-align: right;
+            padding: 15px 0;
+            background: none;
+            border: none;
+            font-weight: bold;
             color: #333;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-main-category button:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-main-category button:after {
+            content: '\f282';
+            font-family: 'Bootstrap Icons';
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-main-category button[aria-expanded="true"]:after {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-sub-categories {
+            list-style: none;
+            padding-right: 15px;
+            margin-bottom: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-main-category button[aria-expanded="true"] + .mobile-sub-categories {
+            max-height: 500px;
+        }
+        
+        .mobile-sub-categories li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-sub-categories a {
             text-decoration: none;
-            transition: all 0.2s ease;
+            color: #666;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px dashed #f0f0f0;
         }
-
-        .submenu-item:hover {
-            background-color: #f8f9fa;
+        
+        .mobile-sub-categories a:hover {
             color: var(--primary-color);
-            padding-right: 2rem;
         }
-
-        /* بخش محتوا برای نمایش */
-        .content-section {
-            background: white;
-            border-radius: 0.5rem;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-top: 2rem;
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
-
-        .demo-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
-
-        .demo-text {
-            line-height: 1.8;
-            color: #555;
+        
+        @media (max-width: 992px) {
+            .category-menu {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 993px) {
+            .mobile-category-menu {
+                display: none !important;
+            }
+            
+            .overlay {
+                display: none !important;
+            }
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #198754 0%, #146c43 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 10px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
-
 <body>
-    <!-- نوبار سفارشی -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <!-- نوبار -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://via.placeholder.com/150x50?text=لوگو" alt="لوگو">
+                <i class="bi bi-shop"></i>
+                فروشگاه اینترنتی
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            
+            <button class="navbar-toggler" type="button" id="mobileMenuToggle">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            
             <div class="collapse navbar-collapse" id="navbarContent">
-                <!-- دکمه دسته‌بندی‌ها -->
-                <div class="categories-dropdown me-3">
-                    <button class="categories-btn">
-                        <i class="fas fa-bars"></i>
-                        دسته‌بندی‌ها
-                    </button>
-
-                    <!-- منوی کشویی دسته‌بندی‌ها -->
-                    <div class="categories-menu">
-                        <!-- دسته‌بندی با زیرمنو -->
-                        <div class="has-submenu" style="position: relative;">
-                            <a href="#" class="category-item">
-                                <span>دوچرخه‌ها</span>
-                                <i class="fas fa-chevron-left"></i>
-                            </a>
-
-                            <!-- زیرمنو -->
-                            <div class="submenu">
-                                <a href="#" class="submenu-item">دوچرخه کوهستان</a>
-                                <a href="#" class="submenu-item">دوچرخه شهری</a>
-                                <a href="#" class="submenu-item">دوچرخه کورسی</a>
-                                <a href="#" class="submenu-item">دوچرخه تاشو</a>
-                                <a href="#" class="submenu-item">دوچرخه برقی</a>
-                            </div>
-                        </div>
-
-                        <a href="#" class="category-item">
-                            <span>لوازم جانبی</span>
-                        </a>
-
-                        <a href="#" class="category-item">
-                            <span>پوشاک دوچرخه‌سواری</span>
-                        </a>
-
-                        <a href="#" class="category-item">
-                            <span>قطعات و ابزار</span>
-                        </a>
-
-                        <a href="#" class="category-item">
-                            <span>کلاه و محافظ</span>
-                        </a>
-
-                        <a href="#" class="category-item">
-                            <span>کفش مخصوص</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- منوی اصلی -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" href="#">خانه</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">محصولات</a>
+                    <li class="nav-item category-btn">
+                        <a class="nav-link" href="#" id="categoryTrigger">دسته‌بندی‌ها</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">دوره‌ها</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">مراکز فروش</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">وبلاگ</a>
+                        <a class="nav-link" href="#">فروش ویژه</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">تماس با ما</a>
                     </li>
                 </ul>
-
-                <!-- بخش جستجو و سبد خرید -->
-                <div class="d-flex align-items-center">
-                    <div class="input-group me-3">
-                        <input type="text" class="form-control" placeholder="جستجو...">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-
-                    <a href="#" class="btn btn-outline-dark position-relative">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            3
-                        </span>
-                    </a>
-                </div>
+                
+                <form class="d-flex">
+                    <input class="form-control me-2 search-box" type="search" placeholder="جستجوی محصولات...">
+                    <button class="btn search-btn" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+                
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person"></i>
+                            حساب کاربری
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="bi bi-cart3"></i>
+                            سبد خرید
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                            </span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- محتوای نمونه برای نمایش -->
-    <div class="container">
-        <div class="content-section">
-            <h2 class="demo-title">نمایش نوبار با منوی دسته‌بندی</h2>
-            <p class="demo-text">
-                این صفحه نمایش‌دهنده نوبار سفارشی با منوی کشویی دسته‌بندی است. ویژگی‌های این نوبار عبارتند از:
-            </p>
-
-            <ul class="demo-text">
-                <li>دکمه "دسته‌بندی‌ها" که با هاور کردن روی آن، منوی کشویی نمایش داده می‌شود</li>
-                <li>یکی از گزینه‌های منوی کشویی دارای زیرمنو است (گزینه "دوچرخه‌ها")</li>
-                <li>افکت انیمیشن خطی از راست به چپ هنگام هاور کردن روی لینک‌های منو</li>
-                <li>طراحی واکنش‌گرا برای دستگاه‌های مختلف</li>
-                <li>استفاده از فونت فارسی Vazirmatn</li>
-            </ul>
-
-            <p class="demo-text mt-3">
-                برای تست عملکرد، ماوس خود را روی دکمه "دسته‌بندی‌ها" ببرید تا منوی کشویی نمایش داده شود. سپس روی گزینه
-                "دوچرخه‌ها" بروید تا زیرمنوی آن نمایش داده شود.
-            </p>
+    <!-- منوی دسته‌بندی برای دسکتاپ -->
+    <div class="category-menu" id="categoryMenu">
+        <div class="category-header">
+            <i class="bi bi-grid-3x3-gap"></i>
+            همه دسته‌بندی‌ها
+        </div>
+        <div class="category-content">
+            <div class="row">
+                <!-- ستون 1 -->
+                <div class="col-lg-3 col-md-6 category-column">
+                    <a href="#" class="main-categories">الکترونیک و دیجیتال</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">موبایل و تبلت</a></li>
+                        <li><a href="#">لپ‌تاپ و کامپیوتر</a></li>
+                        <li><a href="#">هدفون و هندزفری</a></li>
+                        <li><a href="#">دوربین عکاسی</a></li>
+                        <li><a href="#">گجت و لوازم جانبی</a></li>
+                        <li><a href="#">کنسول بازی</a></li>
+                        <li><a href="#">مودم و شبکه</a></li>
+                    </ul>
+                    
+                    <a href="#" class="main-categories">مد و پوشاک</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">لباس مردانه</a></li>
+                        <li><a href="#">لباس زنانه</a></li>
+                        <li><a href="#">کفش</a></li>
+                        <li><a href="#">ساعت و طلا</a></li>
+                        <li><a href="#">کیف و کوله</a></li>
+                        <li><a href="#">اکسسوری</a></li>
+                    </ul>
+                </div>
+                
+                <!-- ستون 2 -->
+                <div class="col-lg-3 col-md-6 category-column">
+                    <a href="#" class="main-categories">خانه و آشپزخانه</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">مبلمان و اتاق پذیرایی</a></li>
+                        <li><a href="#">لوازم آشپزخانه</a></li>
+                        <li><a href="#">دکوراسیون و روشنایی</a></li>
+                        <li><a href="#">لوازم بهداشتی</a></li>
+                        <li><a href="#">وسایل نظافتی</a></li>
+                        <li><a href="#">فرش و گلیم</a></li>
+                    </ul>
+                    
+                    <a href="#" class="main-categories">کالای سوپرمارکتی</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">مواد غذایی</a></li>
+                        <li><a href="#">نوشیدنی</a></li>
+                        <li><a href="#">خواروبار</a></li>
+                        <li><a href="#">لوازم آرایشی</a></li>
+                        <li><a href="#">شوینده و بهداشتی</a></li>
+                        <li><a href="#">تنقلات</a></li>
+                    </ul>
+                </div>
+                
+                <!-- ستون 3 -->
+                <div class="col-lg-3 col-md-6 category-column">
+                    <a href="#" class="main-categories">کتاب و لوازم تحریر</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">کتاب دانشگاهی</a></li>
+                        <li><a href="#">کتاب عمومی</a></li>
+                        <li><a href="#">لوازم التحریر</a></li>
+                        <li><a href="#">کتاب کودک</a></li>
+                        <li><a href="#">نرم‌افزار آموزشی</a></li>
+                        <li><a href="#">کتاب‌های کمک‌آموزشی</a></li>
+                    </ul>
+                    
+                    <a href="#" class="main-categories">ورزش و سفر</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">لوازم ورزشی</a></li>
+                        <li><a href="#">پوشاک ورزشی</a></li>
+                        <li><a href="#">کفش ورزشی</a></li>
+                        <li><a href="#">چادر و لوازم کمپینگ</a></li>
+                        <li><a href="#">کوله‌پشتی و ساک</a></li>
+                        <li><a href="#">دوچرخه</a></li>
+                    </ul>
+                </div>
+                
+                <!-- ستون 4 -->
+                <div class="col-lg-3 col-md-6 category-column">
+                    <a href="#" class="main-categories">اسباب‌بازی و کودک</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">اسباب‌بازی</a></li>
+                        <li><a href="#">پوشاک کودک</a></li>
+                        <li><a href="#">کالسکه و لوازم نوزاد</a></li>
+                        <li><a href="#">سرگرمی و آموزشی</a></li>
+                        <li><a href="#">لوازم بهداشتی کودک</a></li>
+                        <li><a href="#">وسایل غذاخوری کودک</a></li>
+                    </ul>
+                    
+                    <a href="#" class="main-categories">خودرو و موتورسیکلت</a>
+                    <ul class="sub-categories">
+                        <li><a href="#">لوازم یدکی خودرو</a></li>
+                        <li><a href="#">لوازم جانبی خودرو</a></li>
+                        <li><a href="#">موتورسیکلت</a></li>
+                        <li><a href="#">لوازم موتورسیکلت</a></li>
+                        <li><a href="#">تجهیزات کارواش</a></li>
+                        <li><a href="#">سیستم صوتی خودرو</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- اسکریپت‌ها -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- آکاردئون موبایل -->
+    <div class="mobile-category-menu" id="mobileCategoryMenu">
+        <div class="mobile-category-header">
+            <span>دسته‌بندی‌ها</span>
+            <button type="button" id="closeMobileMenu" class="btn-close btn-close-white"></button>
+        </div>
+        <div class="mobile-category-content">
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileElectronics">
+                    الکترونیک و دیجیتال
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileElectronics">
+                    <li><a href="#">موبایل و تبلت</a></li>
+                    <li><a href="#">لپ‌تاپ و کامپیوتر</a></li>
+                    <li><a href="#">هدفون و هندزفری</a></li>
+                    <li><a href="#">دوربین عکاسی</a></li>
+                    <li><a href="#">گجت و لوازم جانبی</a></li>
+                    <li><a href="#">کنسول بازی</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileFashion">
+                    مد و پوشاک
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileFashion">
+                    <li><a href="#">لباس مردانه</a></li>
+                    <li><a href="#">لباس زنانه</a></li>
+                    <li><a href="#">کفش</a></li>
+                    <li><a href="#">ساعت و طلا</a></li>
+                    <li><a href="#">کیف و کوله</a></li>
+                    <li><a href="#">اکسسوری</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileHome">
+                    خانه و آشپزخانه
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileHome">
+                    <li><a href="#">مبلمان و اتاق پذیرایی</a></li>
+                    <li><a href="#">لوازم آشپزخانه</a></li>
+                    <li><a href="#">دکوراسیون و روشنایی</a></li>
+                    <li><a href="#">لوازم بهداشتی</a></li>
+                    <li><a href="#">وسایل نظافتی</a></li>
+                    <li><a href="#">فرش و گلیم</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileSupermarket">
+                    کالای سوپرمارکتی
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileSupermarket">
+                    <li><a href="#">مواد غذایی</a></li>
+                    <li><a href="#">نوشیدنی</a></li>
+                    <li><a href="#">خواروبار</a></li>
+                    <li><a href="#">لوازم آرایشی</a></li>
+                    <li><a href="#">شوینده و بهداشتی</a></li>
+                    <li><a href="#">تنقلات</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileBooks">
+                    کتاب و لوازم تحریر
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileBooks">
+                    <li><a href="#">کتاب دانشگاهی</a></li>
+                    <li><a href="#">کتاب عمومی</a></li>
+                    <li><a href="#">لوازم التحریر</a></li>
+                    <li><a href="#">کتاب کودک</a></li>
+                    <li><a href="#">نرم‌افزار آموزشی</a></li>
+                    <li><a href="#">کتاب‌های کمک‌آموزشی</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileSports">
+                    ورزش و سفر
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileSports">
+                    <li><a href="#">لوازم ورزشی</a></li>
+                    <li><a href="#">پوشاک ورزشی</a></li>
+                    <li><a href="#">کفش ورزشی</a></li>
+                    <li><a href="#">چادر و لوازم کمپینگ</a></li>
+                    <li><a href="#">کوله‌پشتی و ساک</a></li>
+                    <li><a href="#">دوچرخه</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileToys">
+                    اسباب‌بازی و کودک
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileToys">
+                    <li><a href="#">اسباب‌بازی</a></li>
+                    <li><a href="#">پوشاک کودک</a></li>
+                    <li><a href="#">کالسکه و لوازم نوزاد</a></li>
+                    <li><a href="#">سرگرمی و آموزشی</a></li>
+                    <li><a href="#">لوازم بهداشتی کودک</a></li>
+                    <li><a href="#">وسایل غذاخوری کودک</a></li>
+                </ul>
+            </div>
+            
+            <div class="mobile-main-category">
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#mobileAuto">
+                    خودرو و موتورسیکلت
+                </button>
+                <ul class="mobile-sub-categories collapse" id="mobileAuto">
+                    <li><a href="#">لوازم یدکی خودرو</a></li>
+                    <li><a href="#">لوازم جانبی خودرو</a></li>
+                    <li><a href="#">موتورسیکلت</a></li>
+                    <li><a href="#">لوازم موتورسیکلت</a></li>
+                    <li><a href="#">تجهیزات کارواش</a></li>
+                    <li><a href="#">سیستم صوتی خودرو</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- overlay برای بستن منوی موبایل -->
+    <div class="overlay" id="overlay"></div>
+    <!-- محتوای نمونه -->
+    <div class="container mt-5">
+        <div class="hero-section text-center">
+            <h1>فروشگاه اینترنتی نمونه</h1>
+            <p class="lead">در دسکتاپ: هاور روی دکمه "دسته‌بندی‌ها" | در موبایل: کلیک روی آیکون منو</p>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card p-3 mb-4">
+                    <h4>ویژگی‌های این نوبار:</h4>
+                    <ul>
+                        <li>منوی دسته‌بندی تمام‌صفحه برای دسکتاپ</li>
+                        <li>آکاردئون از بغل برای موبایل</li>
+                        <li>طراحی واکنش‌گرا برای همه دستگاه‌ها</li>
+                        <li>هاور نرم و افکت‌های بصری جذاب</li>
+                        <li>دسته‌بندی‌های اصلی و زیردسته‌ها</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3 mb-4">
+                    <h4>راهنمای استفاده:</h4>
+                    <p><strong>دسکتاپ:</strong> برای مشاهده منوی دسته‌بندی، نشانگر ماوس خود را روی دکمه "دسته‌بندی‌ها" در نوبار ببرید.</p>
+                    <p><strong>موبایل:</strong> روی آیکون منو (سه خط) ضربه بزنید تا منوی آکاردئون از سمت راست باز شود.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTrigger = document.getElementById('categoryTrigger');
+            const categoryMenu = document.getElementById('categoryMenu');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileCategoryMenu = document.getElementById('mobileCategoryMenu');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            const overlay = document.getElementById('overlay');
+            let menuTimeout;
+            
+            // باز کردن منو با هاور (دسکتاپ)
+            categoryTrigger.addEventListener('mouseenter', function() {
+                clearTimeout(menuTimeout);
+                categoryMenu.classList.add('active');
+            });
+            
+            // بستن منو وقتی هاور برداشته شد (دسکتاپ)
+            categoryTrigger.addEventListener('mouseleave', function() {
+                menuTimeout = setTimeout(function() {
+                    if (!categoryMenu.matches(':hover')) {
+                        categoryMenu.classList.remove('active');
+                    }
+                }, 100);
+            });
+            
+            // نگه داشتن منو وقتی هاور روی آن است (دسکتاپ)
+            categoryMenu.addEventListener('mouseenter', function() {
+                clearTimeout(menuTimeout);
+            });
+            
+            // بستن منو وقتی هاور از روی آن برداشته شد (دسکتاپ)
+            categoryMenu.addEventListener('mouseleave', function() {
+                menuTimeout = setTimeout(function() {
+                    categoryMenu.classList.remove('active');
+                }, 200);
+            });
+            
+            // باز کردن منوی موبایل
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileCategoryMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // بستن منوی موبایل
+            function closeMobileCategoryMenu() {
+                mobileCategoryMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            closeMobileMenu.addEventListener('click', closeMobileCategoryMenu);
+            overlay.addEventListener('click', closeMobileCategoryMenu);
+            
+            // بستن منوی موبایل با کلید ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeMobileCategoryMenu();
+                }
+            });
+        });
+    </script>
+</body>
 </html>

@@ -2,6 +2,7 @@ function initMainMenu() {
   let mainMenu = document.querySelector(".main-menu");
 
   const bookmarkToggle = document.getElementById("bookmarkToggle");
+  const categoryMenu = document.getElementById("categoryMenu");
   const Bookmark = document.getElementById("bookmark");
   if (Bookmark && Bookmark.classList.contains("expanded")) {
     mainMenu.classList.add("with-bookmark");
@@ -21,12 +22,15 @@ function initMainMenu() {
         document.documentElement.scrollTop > scrollOffset // For Chrome, Firefox, IE and Opera
       ) {
         mainMenu.classList.add("small");
+        categoryMenu.classList.add("small");
+
         if (Bookmark && Bookmark.classList.contains("expanded")) {
           mainMenu.classList.add("smallBookmark");
         }
         mainMenu.classList.remove("rounded-3");
       } else {
         mainMenu.classList.remove("small");
+        categoryMenu.classList.remove("small");
         if (Bookmark && Bookmark.classList.contains("expanded")) {
           mainMenu.classList.remove("smallBookmark");
         }
@@ -61,3 +65,63 @@ window.addEventListener("DOMContentLoaded", () => {
 function setCssVar(name, value) {
   document.documentElement.style.setProperty(name, value);
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const categoryTrigger = document.getElementById("categoryTrigger");
+  const categoryMenu = document.getElementById("categoryMenu");
+  const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+  const mobileCategoryMenu = document.getElementById("mobileCategoryMenu");
+  const closeMobileMenu = document.getElementById("closeMobileMenu");
+  const overlay = document.getElementById("overlay");
+  let menuTimeout;
+
+  // باز کردن منو با هاور (دسکتاپ)
+  categoryTrigger.addEventListener("mouseenter", function () {
+    clearTimeout(menuTimeout);
+    categoryMenu.classList.add("active");
+  });
+
+  // بستن منو وقتی هاور برداشته شد (دسکتاپ)
+  categoryTrigger.addEventListener("mouseleave", function () {
+    menuTimeout = setTimeout(function () {
+      if (!categoryMenu.matches(":hover")) {
+        categoryMenu.classList.remove("active");
+      }
+    }, 100);
+  });
+
+  // نگه داشتن منو وقتی هاور روی آن است (دسکتاپ)
+  categoryMenu.addEventListener("mouseenter", function () {
+    clearTimeout(menuTimeout);
+  });
+
+  // بستن منو وقتی هاور از روی آن برداشته شد (دسکتاپ)
+  categoryMenu.addEventListener("mouseleave", function () {
+    menuTimeout = setTimeout(function () {
+      categoryMenu.classList.remove("active");
+    }, 200);
+  });
+
+  // باز کردن منوی موبایل
+  mobileMenuToggle.addEventListener("click", function () {
+    mobileCategoryMenu.classList.add("active");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+
+  // بستن منوی موبایل
+  function closeMobileCategoryMenu() {
+    mobileCategoryMenu.classList.remove("active");
+    overlay.classList.remove("active");
+    // document.body.style.overflow = "auto";
+  }
+
+  closeMobileMenu.addEventListener("click", closeMobileCategoryMenu);
+  overlay.addEventListener("click", closeMobileCategoryMenu);
+
+  // بستن منوی موبایل با کلید ESC
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeMobileCategoryMenu();
+    }
+  });
+});
