@@ -1,0 +1,399 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Vazir FD', sans-serif !important;
+}
+
+.builder-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin-right: 24px;
+    border-radius: 10px;
+    position: relative;
+    top: 30px;
+}
+
+.builder-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #3c3c3c;
+}
+
+.builder-text {
+    text-align: justify;
+    font-size: 13px;
+    font-weight: 500;
+    color: #555555;
+    background-color: #e9e9e9;
+    border-radius: 13px;
+}
+
+.mission-title::before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    width: 5px;
+    height: 25px;
+    background-color: #10a040;
+    border-radius: 5px;
+    margin-left: 8px;
+}
+
+.mission-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3c3c3c;
+    border-radius: 8px;
+    padding-left: 6px;
+    /* border-right: 5px solid #10a040; */
+}
+
+.mission-text {
+    font-size: 16px;
+    /* font-weight: 500; */
+    color: #555555;
+    text-align: justify;
+    line-height: 40px;
+}
+
+.mission-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #10a040;
+}
+
+.mission-row .col {
+    position: relative;
+}
+
+.mission-row .col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: #e5e7eb;
+}
+
+/* برای نمایش بهتر در موبایل */
+@media (max-width: 768px) {
+    .mission-row .col::after {
+        display: none;
+    }
+
+    .mission-row .col {
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .mission-row .col:last-child {
+        border-bottom: none;
+    }
+}
+
+/* video section ======================================================================================================= */
+.reels-container {
+    width: 100%;
+    max-width: 400px;
+    /* margin: 40px auto; */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* نسبت تصویر ریلز (9:16) */
+.video-js.vjs-fill {
+    padding-top: 177%;
+    height: 0 !important;
+}
+
+/* 🎨 تغییر رنگ کنترل‌ها */
+.vjs-control-bar {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.video-js .vjs-big-play-button {
+    background-color: #10a040 !important;
+    font-size: 2em;
+    line-height: 2.9em;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+}
+
+.vjs-play-control .vjs-icon-play:before,
+.vjs-play-control .vjs-icon-pause:before {
+    color: #00d2ff !important;
+    /* رنگ دکمه پخش */
+}
+
+.vjs-progress-holder,
+.vjs-play-progress {
+    background-color: #898989 !important;
+    /* رنگ نوار */
+}
+
+.vjs-volume-level {
+    background-color: #898989 !important;
+    /* رنگ ولوم */
+}
+
+/* About Us Section
+--------------------------------*/
+
+#about {
+    background: url(/assets/products/product2.webp) center top no-repeat fixed;
+    background-size: cover;
+    padding: 60px 0 40px 0;
+    position: relative;
+    direction: rtl;
+    font-family: 'Vazir', 'Open Sans', sans-serif;
+}
+
+#about::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.92);
+    z-index: 9;
+}
+
+#about .container {
+    position: relative;
+    z-index: 10;
+}
+
+#about .section-header p {
+    text-align: center;
+    line-height: 35px;
+}
+
+/* Sections Header
+--------------------------------*/
+
+.section-header h3 {
+    font-size: 32px;
+    color: #111;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+    font-family: 'Vazir', 'Open Sans', sans-serif;
+}
+
+.section-header h3::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+}
+
+.section-header h3::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #18d26e;
+    bottom: 0;
+    left: calc(50% - 20px);
+}
+
+.section-header p {
+    text-align: center;
+    padding-bottom: 30px;
+    color: #333;
+}
+
+.testimonial-slider {
+    max-width: 850px;
+    position: relative;
+}
+
+.swiper {
+    padding: 40px 0 60px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 89%;
+    max-width: 750px;
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: relative;
+    /* box-shadow: 0 20px 40px #0001; */
+    border: 1px solid #e9e9e9;
+}
+
+/* کارت‌های کج زیر کارت اصلی */
+.mySwiper::before,
+.mySwiper::after {
+    content: "";
+    position: absolute;
+    width: 87%;
+    height: 77%;
+    background: #fff;
+    border-radius: 20px;
+    top: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* box-shadow: 0 15px 30px #0001; */
+    z-index: -1;
+    border: 1px solid #e9e9e9;
+}
+
+.mySwiper::before {
+    transform: translateX(-50%) rotate(-4deg);
+}
+
+.mySwiper::after {
+    transform: translateX(-50%) rotate(-1.5deg);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #10a040 !important;
+    width: 20px !important;
+    border-radius: 5px;
+}
+
+/* ستاره‌ها */
+.stars {
+    color: gold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* متن */
+.card p {
+    line-height: 2;
+    margin-bottom: 35px;
+}
+
+/* بخش کاربر */
+.user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.user span {
+    font-size: 16px;
+    color: gray;
+}
+
+.comment-title {
+    color: #333;
+    font-size: 50px;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.etemad {
+    color: #10a040;
+}
+
+.commetn-text {
+    text-align: justify;
+    font-size: 16px;
+    color: #555555;
+    margin-top: 20px;
+}
+
+.TestSwiper .swiper-slide {
+    width: 300px;
+    height: 300px;
+}
+
+.splide img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* map ====================================================================================== */
+.branch-map {
+    padding: 40px 0;
+}
+
+.iran-map-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+#iran-map {
+    width: 100%;
+}
+
+.province {
+    fill: #dcdcdc;
+    stroke: #bbb;
+    stroke-width: 2;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* رنگ کردن استان‌هایی که نمایندگی دارند */
+#tehran {
+    fill: #ffb740;
+}
+#isfahan {
+    fill: #ffb740;
+}
+#kerman {
+    fill: #ffb740;
+}
+
+/* پین‌ها */
+.pin {
+    fill: #333;
+}
+
+/* خط‌چین‌ها */
+.dash {
+    stroke: #999;
+    stroke-width: 2;
+    stroke-dasharray: 6;
+}
+
+/* لیبل شهر */
+.label {
+    font-size: 14px;
+    fill: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* کارت‌های اسلایدر */
+.branch-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
